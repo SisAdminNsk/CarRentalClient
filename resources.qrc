@@ -8,4 +8,8 @@
         <file>Media/usernameIcon.png</file>
         <file>Media/verificationIcon.png</file>
     </qresource>
+    <qresource prefix="/Configuration"/>
+    <qresource prefix="/configuration">
+        <file>settings.json</file>
+    </qresource>
 </RCC>

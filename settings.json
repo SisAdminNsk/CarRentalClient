@@ -1,4 +1,4 @@
 {
     "serverBaseURL": "http://25.10.158.229:80",
-    "localHostDevelopment": "http://localhost:5096"
+    "localHostDevelopment": "http://192.168.0.12:5072"
 }

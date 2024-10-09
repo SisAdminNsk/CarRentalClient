@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/media">
+        <file>Media/carsharingLogo.png</file>
+        <file>Media/email.png</file>
+        <file>Media/loading.gif</file>
+        <file>Media/loginIcon.png</file>
+        <file>Media/passwordIcon.png</file>
+        <file>Media/usernameIcon.png</file>
+        <file>Media/verificationIcon.png</file>
+    </qresource>
+</RCC>

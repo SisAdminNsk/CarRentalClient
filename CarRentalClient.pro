@@ -42,6 +42,7 @@ SOURCES += \
         Api/Endpoints/CarOrders/Requests/getservertimerequest.cpp \
         Api/Endpoints/Cars/Replies/getcarsreplyhandler.cpp \
         Api/Endpoints/Cars/Requests/getcarsrequest.cpp \
+        Api/Endpoints/CarsharingUsers/Replies/getcarsharinguserrequest.cpp \
         Api/Endpoints/baseapireplyhandler.cpp \
         Api/Endpoints/baseapirequest.cpp \
         Configuration/configurationmanager.cpp \
@@ -66,6 +67,7 @@ HEADERS += \
         Api/Endpoints/CarOrders/Requests/getservertimerequest.h \
         Api/Endpoints/Cars/Replies/getcarsreplyhandler.h \
         Api/Endpoints/Cars/Requests/getcarsrequest.h \
+        Api/Endpoints/CarsharingUsers/Replies/getcarsharinguserrequest.h \
         Api/Endpoints/baseapireplyhandler.h \
         Api/Endpoints/baseapirequest.h \
         Configuration/configurationmanager.h \

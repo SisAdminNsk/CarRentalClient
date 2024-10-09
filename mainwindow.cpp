@@ -117,15 +117,6 @@ void MainWindow::OnLoginSuccess(const LoginResponse& loginResponse){
     this->close();
 }
 
-void MainWindow::OnGetCarsSuccess(const QList<CarDto>& cars){
-    for(size_t i=0;i<cars.size();i++){
-        auto car = cars[i];
-    }
-}
-void MainWindow::OnGetCarsFailure(const QString& message){
-    QMessageBox::information(nullptr, "Получение авто", message);
-}
-
 void MainWindow::OnLoginError(const QString &message){
 
     this->OnLoginRequestFinished();

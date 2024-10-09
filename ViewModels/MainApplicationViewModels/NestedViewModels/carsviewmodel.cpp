@@ -119,7 +119,7 @@ void CarsViewModel::OnGettingCarsSuccess(const GetCarsResponse& responseBody){
     urlImageLoader = new FromUrlImageLoader(ui->progressBar);
     urlImageLoader->SetTargetsForDownloadCount(responseBody.Cars.size());
 
-    QObject::connect(urlImageLoader,&FromUrlImageLoader::OnAllImagesDownloaded, this, &CarsViewModel::OnAllImagesDownloaded);
+    QObject::connect(urlImageLoader, &FromUrlImageLoader::OnAllImagesDownloaded, this, &CarsViewModel::OnAllImagesDownloaded);
 
     QList<QString> urls;
     QList<CarCardViewModel*> carCards;

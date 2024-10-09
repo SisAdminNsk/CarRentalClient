@@ -3,8 +3,8 @@
 #include <QUrlQuery>
 
 GetCarsharingUserRequest::GetCarsharingUserRequest(const LoginResponse& loginResponse, QObject *parent) :
-    loginResponse(loginResponse),
-    BaseApiRequest (parent)
+    BaseApiRequest {parent},
+    loginResponse(loginResponse)
 {
     this->Setup(new GetCarsharingUserReplyHandler(this,this));
 }

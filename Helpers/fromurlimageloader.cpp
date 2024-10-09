@@ -34,9 +34,7 @@ void FromUrlImageLoader::LoadImagesWithOrderSaving(const QList<QString>& urls, Q
 
     this->carCards.clear();
 
-    for(size_t i=0;i<urls.size();i++){
-        carCards.push_back(nullptr);
-    }
+    this->carCards.resize(urls.size());
 
     carImageToPosition.clear();
 
@@ -55,6 +53,7 @@ void FromUrlImageLoader::OnImageDownloaded(QNetworkReply *reply, CarCardViewMode
         pixmap.loadFromData(reply->readAll());
         carCard->SetImageFromPixmap(pixmap);
     }
+
     reply->deleteLater();
 
     mutex.lock();
@@ -72,6 +71,12 @@ void FromUrlImageLoader::OnImageDownloaded(QNetworkReply *reply, CarCardViewMode
     mutex.unlock();
 
     if (loadedImages == totalImages) {
-        emit OnAllImagesDownloaded(carCards);
+
+        QList<CarCardViewModel*> carList;
+        for(auto& carCard : this->carCards){
+            carList.push_back(carCard);
+        }
+
+       emit OnAllImagesDownloaded(carList);
     }
 }

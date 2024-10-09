@@ -23,9 +23,6 @@ private slots:
     void OnLoginError(const QString &message);
     void OnLoginSuccess(const LoginResponse& loginResponse);
 
-    void OnGetCarsSuccess(const QList<CarDto>& cars);
-    void OnGetCarsFailure(const QString& message);
-
     void OnLoginRequestStarted();
     void OnLoginRequestFinished();
 

@@ -22,7 +22,7 @@ public:
     void SetTargetsForDownloadCount(int count);
 private:
     QMap<QString, int> carImageToPosition;
-    QList<CarCardViewModel*> carCards;
+    std::vector<CarCardViewModel*> carCards;
     QNetworkAccessManager manager;
     QProgressBar *progressBar;
     int totalImages = 0;

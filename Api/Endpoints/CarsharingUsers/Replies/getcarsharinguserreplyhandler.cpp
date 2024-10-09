@@ -4,8 +4,8 @@
 #include <QJsonArray>
 
 GetCarsharingUserReplyHandler::GetCarsharingUserReplyHandler(GetCarsharingUserRequest *getCarsharingUserRequest, QObject *parent) :
-    getCarsharingUserRequest(getCarsharingUserRequest),
-    BaseApiReplyHandler(parent)
+    BaseApiReplyHandler{parent},
+    getCarsharingUserRequest(getCarsharingUserRequest)
 {
 
 }
@@ -33,4 +33,6 @@ void GetCarsharingUserReplyHandler::Handle(QNetworkReply* reply){
         emit this->getCarsharingUserRequest->OnFailureSignal(errorsQList);
         return;
     }
+
+    emit this->getCarsharingUserRequest->OnSuccessSingal(CarsharingUserDto(jsonDoc.object()));
 }

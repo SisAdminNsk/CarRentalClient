@@ -58,6 +58,14 @@ SOURCES += \
         Api/Endpoints/baseapirequest.cpp \
         Configuration/configurationmanager.cpp \
         Helpers/fromurlimageloader.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carcardviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carreservationform.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/cabinetviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/carsviewmodel.cpp \
+        ViewModels/MainApplicationViewModels/carrentalclientmainwindow.cpp \
         ViewModels/Validators/formvalidator.cpp \
         ViewModels/Validators/personaldatavalidator.cpp \
         ViewModels/loadinglabel.cpp \
@@ -99,6 +107,14 @@ HEADERS += \
         Api/Endpoints/baseapirequest.h \
         Configuration/configurationmanager.h \
         Helpers/fromurlimageloader.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carcardviewmodel.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carreservationform.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/cabinetviewmodel.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/carsviewmodel.h \
+        ViewModels/MainApplicationViewModels/carrentalclientmainwindow.h \
         ViewModels/Validators/formvalidator.h \
         ViewModels/Validators/personaldatavalidator.h \
         ViewModels/loadinglabel.h \
@@ -108,6 +124,14 @@ HEADERS += \
         mainwindow.h
 
 FORMS += \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carcardviewmodel.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carreservationform.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/cabinetviewmodel.ui \
+        ViewModels/MainApplicationViewModels/NestedViewModels/carsviewmodel.ui \
+        ViewModels/MainApplicationViewModels/carrentalclientmainwindow.ui \
         ViewModels/registrationform.ui \
         ViewModels/verificationform.ui \
         mainwindow.ui

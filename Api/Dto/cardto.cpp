@@ -12,6 +12,10 @@ CarDto::CarDto(const QJsonObject& document){
     CarAcceleration = document.value("accelerationTo100").toDouble();
 }
 
+CarDto::CarDto(){
+
+}
+
 CarDto::CarDto(QString id,
        QString brand,
        QString model,

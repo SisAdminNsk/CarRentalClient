@@ -8,6 +8,7 @@
 class CarDto : public BaseApiDto
 {
 public:
+    CarDto();
     CarDto(const QJsonObject& document);
     CarDto(QString id,
            QString brand,

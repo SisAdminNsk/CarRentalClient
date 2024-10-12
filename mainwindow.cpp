@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Setup();
 
+    // тестовый коммит
+
     //CreateCarOrderDto createCarOrderDto;
     //createCarOrderDto.ApproximatePrice = 100;
     //createCarOrderDto.Comment = "f;ajkgjak";

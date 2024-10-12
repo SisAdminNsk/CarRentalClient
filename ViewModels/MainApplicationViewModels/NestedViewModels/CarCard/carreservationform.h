@@ -47,9 +47,6 @@ private slots:
 
     void OnStartOfLeaseTimeSelected(int currentSelectedIndex);
     void OnEndOfLeaseTimeSelected(int currentSelectedIndex);
-
-signals:
-    void changedIndex( int );
 };
 
 #endif // CARRESERVATIONFORM_H

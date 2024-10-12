@@ -53,7 +53,7 @@ void CarCardViewModel::OnSuccessGettingServerDateTime(const QDateTime& serverTim
     auto carReservationForm = new CarReservationForm
     (
         carDto,
-        *(ui->carImage->pixmap()),
+        ui->carImage->pixmap(),
         ClientCache::instance().GetCarsharingUserProfile(),
         serverTime
     );
@@ -67,9 +67,9 @@ void CarCardViewModel::OnFailureGettingsServerDateTime(const QString& errorMessa
 
 void CarCardViewModel::SetImageFromPixmap(const QPixmap& pixmap){
     ui->carImage->setPixmap(
-        pixmap.scaled(QSize(cardSize.width() * 0.8, cardSize.height() * 0.8),
-        Qt::KeepAspectRatio,
-        Qt::SmoothTransformation));
+        pixmap.scaled(QSize(cardSize.width() * 0.99, cardSize.height() * 0.99),
+        Qt::KeepAspectRatio, Qt::SmoothTransformation
+        ));
 }
 
 CarCardViewModel::~CarCardViewModel()

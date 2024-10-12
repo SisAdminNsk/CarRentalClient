@@ -41,11 +41,7 @@ void CarReservationForm::SetupInputWidgets(){
         ui->endLeaseTimePicker->addItem(QString::number(var) + ":" + "00");
     }
 
-    connect(ui->startLeaseTimePicker, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-            [=]( int ix ) { emit( changedIndex( ix ) ); });
-
-    QObject::connect(this, &CarReservationForm::changedIndex, this, &CarReservationForm::OnStartOfLeaseTimeSelected);
-
+    QObject::connect(ui->startLeaseTimePicker, &QComboBox::currentIndexChanged, this, &CarReservationForm::OnStartOfLeaseTimeSelected);
     QObject::connect(ui->startLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnStartOfLeaseDateSelected);
     QObject::connect(ui->endLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnEndOfLeaseDateSelected);
 }
@@ -106,6 +102,15 @@ void CarReservationForm::OnStartOfLeaseDateSelected(const QDate& date){
 }
 
 void CarReservationForm::OnEndOfLeaseDateSelected(const QDate& date){
+
+    if(ui->endLeaseDatePicker->date() == serverDateTime.date()){
+        ui->endLeaseTimePicker->clear();
+        for(size_t i=serverDateTime.time().hour(); i<=23; i++){
+            ui->endLeaseTimePicker->addItem(QString::number(i) + ":00");
+        }
+
+        return;
+    }
 
     if(ui->startLeaseDatePicker->date() < ui->endLeaseDatePicker->date()){
         OnStartOfLeaseTimeSelected(0);

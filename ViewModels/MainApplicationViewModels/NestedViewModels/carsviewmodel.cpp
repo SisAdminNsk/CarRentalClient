@@ -9,8 +9,8 @@ CarsViewModel::CarsViewModel(const LoginResponse& loginResponse, QWidget *parent
     QWidget(parent),
     ui(new Ui::CarsViewModel)
 {
-    this->cardWidth = 350;
-    this->cardHeight = 350;
+    this->cardWidth = 400;
+    this->cardHeight = 400;
 
     ui->setupUi(this);
 

@@ -1,6 +1,8 @@
 #include "carreservationform.h"
 #include "ui_carreservationform.h"
 
+#include "Models/rentalpricecalculator.h"
+
 CarReservationForm::CarReservationForm(
     const CarDto& car,
     const QPixmap& carImagePixmap,
@@ -41,9 +43,10 @@ void CarReservationForm::SetupInputWidgets(){
         ui->endLeaseTimePicker->addItem(QString::number(var) + ":" + "00");
     }
 
-    QObject::connect(ui->startLeaseTimePicker, &QComboBox::currentIndexChanged, this, &CarReservationForm::OnStartOfLeaseTimeSelected);
-    QObject::connect(ui->startLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnStartOfLeaseDateSelected);
-    QObject::connect(ui->endLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnEndOfLeaseDateSelected);
+    connect(ui->startLeaseTimePicker, &QComboBox::currentIndexChanged, this, &CarReservationForm::OnStartOfLeaseTimeSelected);
+    connect(ui->endLeaseTimePicker, &QComboBox::currentIndexChanged, this, &CarReservationForm::OnEndOfLeaseTimeSelected);
+    connect(ui->startLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnStartOfLeaseDateSelected);
+    connect(ui->endLeaseDatePicker, &QDateEdit::dateChanged, this, &CarReservationForm::OnEndOfLeaseDateSelected);
 }
 
 void CarReservationForm::FillPersonalData(){
@@ -80,6 +83,15 @@ void CarReservationForm::Setup(){
 
     FillPersonalData();
     FillCarData();
+
+    for(size_t i=0;i<24;i++){
+        this->indexToTime[i] = QString::number(i) + ":00";
+        this->QStringTimeToHours[QString::number(i) + ":00"] = i;
+    }
+
+    auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+
+    ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
 }
 
 void CarReservationForm::OnStartOfLeaseDateSelected(const QDate& date){
@@ -99,6 +111,9 @@ void CarReservationForm::OnStartOfLeaseDateSelected(const QDate& date){
     }
 
     ui->endLeaseDatePicker->setMinimumDate(date);
+
+    auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+    ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
 }
 
 void CarReservationForm::OnEndOfLeaseDateSelected(const QDate& date){
@@ -109,6 +124,9 @@ void CarReservationForm::OnEndOfLeaseDateSelected(const QDate& date){
             ui->endLeaseTimePicker->addItem(QString::number(i) + ":00");
         }
 
+        auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+        ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
+
         return;
     }
 
@@ -118,17 +136,14 @@ void CarReservationForm::OnEndOfLeaseDateSelected(const QDate& date){
     else{
         OnStartOfLeaseTimeSelected(ui->startLeaseTimePicker->currentIndex());
     }
+
+    auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+    ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
 }
 
 void CarReservationForm::OnStartOfLeaseTimeSelected(int currentSelectedIndex){
 
     ui->endLeaseTimePicker->clear();
-
-    QMap<int,QString> indexToTime;
-
-    for(size_t i=0;i<24;i++){
-        indexToTime[i] = QString::number(i) + ":00";
-    }
 
     if(ui->startLeaseDatePicker->dateTime().date() == ui->endLeaseDatePicker->dateTime().date()){
         for(size_t i=currentSelectedIndex; i<=23; i++){
@@ -140,8 +155,29 @@ void CarReservationForm::OnStartOfLeaseTimeSelected(int currentSelectedIndex){
             ui->endLeaseTimePicker->addItem(indexToTime[i]);
         }
     }
+
+    auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+    ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
 }
 
 void CarReservationForm::OnEndOfLeaseTimeSelected(int currentSelectedIndex){
 
+    auto rentalPriceCalculator = InitializeRentalPriceCalulator();
+    ui->price->setText(QString::number(rentalPriceCalculator.CalculateRentalPrice(), 'f', 2));
+}
+
+RentalPriceCalculator CarReservationForm::InitializeRentalPriceCalulator()
+{
+    RentalPriceCalculator rentalPriceCalculator
+    (
+        QDateTime(QDate(ui->startLeaseDatePicker->date()),
+                  QTime(QStringTimeToHours[ui->startLeaseTimePicker->currentText()], 0)),
+
+        QDateTime(QDate(ui->endLeaseDatePicker->date()),
+                  QTime(QStringTimeToHours[ui->endLeaseTimePicker->currentText()], 0)),
+
+        car.BaseRentalPricePerHour
+    );
+
+    return rentalPriceCalculator;
 }

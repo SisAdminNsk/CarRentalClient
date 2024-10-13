@@ -58,6 +58,7 @@ SOURCES += \
         Api/Endpoints/baseapirequest.cpp \
         Configuration/configurationmanager.cpp \
         Helpers/fromurlimageloader.cpp \
+        Models/rentalpricecalculator.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.cpp \
@@ -107,6 +108,7 @@ HEADERS += \
         Api/Endpoints/baseapirequest.h \
         Configuration/configurationmanager.h \
         Helpers/fromurlimageloader.h \
+        Models/rentalpricecalculator.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.h \

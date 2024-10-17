@@ -15,7 +15,7 @@ QNetworkReply* CreateCarOrderRequest::SendApiRequest(){
 
 void CreateCarOrderRequest::SetupRequest(){
 
-    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/CreateCarOrder"));
+    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/CreateOrUpdateCarOrder"));
 
     request = QNetworkRequest(url);
 

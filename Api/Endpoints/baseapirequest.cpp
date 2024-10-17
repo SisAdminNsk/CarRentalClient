@@ -30,7 +30,7 @@ void BaseApiRequest::SetServerConfiguration(){
     ConfigurationManager configurationManager;
 
     //baseServerUrl = configurationManager.GetByKey("serverBaseURL").toString();
-    baseServerUrl = configurationManager.GetByKey("localHostDevelopment").toString();
+    baseServerUrl = configurationManager.GetByKey("localhost").toString();
 }
 
 void BaseApiRequest::ReplyFinished(QNetworkReply* reply){

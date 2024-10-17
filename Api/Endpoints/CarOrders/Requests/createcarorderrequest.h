@@ -8,9 +8,12 @@ class CreateCarOrderRequest : public BaseApiRequest
 {
     Q_OBJECT
 public:
-    explicit CreateCarOrderRequest(const QString& authorizationToken,
-                                   const CreateCarOrderDto& createCarOrderDTO,
-                                   QObject *parent = nullptr);
+    explicit CreateCarOrderRequest
+    (
+        const QString& authorizationToken,
+        const CreateCarOrderDto& createCarOrderDTO,
+        QObject *parent = nullptr
+    );
 
     virtual QNetworkReply* SendApiRequest() override;
     virtual void SetupRequest() override;

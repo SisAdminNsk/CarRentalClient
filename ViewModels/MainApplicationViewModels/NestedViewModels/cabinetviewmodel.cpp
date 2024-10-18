@@ -1,8 +1,13 @@
 #include "cabinetviewmodel.h"
 #include "ui_cabinetviewmodel.h"
 
+#include <QMessageBox>
+
+#include "Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.h"
+
 CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
+    loginResponse(loginResponse),
     ui(new Ui::CabinetViewModel)
 {
     ui->setupUi(this);
@@ -19,6 +24,8 @@ CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *
     QObject::connect(ui->profileDataButton, &QPushButton::clicked, this, &CabinetViewModel::OnPersonalDataButtonClicked);
     QObject::connect(ui->activeOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnActiveOrdersButtonClicked);
     QObject::connect(ui->closedOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnClosedOrdersButtonClicked);
+
+    LoadOpenedCarOrders();
 }
 
 void CabinetViewModel::FillProfileData(const CarsharingUserDto& carsharingUser){
@@ -40,6 +47,33 @@ void CabinetViewModel::OnActiveOrdersButtonClicked(){
 
 void CabinetViewModel::OnClosedOrdersButtonClicked(){
     ui->stackedWidget->setCurrentWidget(closedOrdersViewModel);
+}
+
+void CabinetViewModel::LoadOpenedCarOrders(){
+
+    auto getOpenedCarOrdersRequest = new GetOpenedCarOrdersRequest(loginResponse.Token, loginResponse.UserId);
+
+    connect(getOpenedCarOrdersRequest, &GetOpenedCarOrdersRequest::OnSuccessSingal, this,
+            &CabinetViewModel::OnGettingOpenedCarOrdersSuccess);
+
+    connect(getOpenedCarOrdersRequest, &GetOpenedCarOrdersRequest::OnFailureSignal, this,
+            &CabinetViewModel::OnGettingOpenedCarOrdersFailure);
+
+    getOpenedCarOrdersRequest->SendApiRequest();
+}
+
+void CabinetViewModel::OnGettingOpenedCarOrdersSuccess(const QList<OpenedCarReservationResonse>& openedCarReservations){
+
+    activeOrdersViewModel->InitializeCatalog(openedCarReservations);
+}
+
+void CabinetViewModel::OnGettingOpenedCarOrdersFailure(const QString& errorMessage){
+    QMessageBox::information(this, "Ошибка получения списка активных заказов", errorMessage);
+}
+
+
+void CabinetViewModel::LoadClosedCarOrders(){
+
 }
 
 CabinetViewModel::~CabinetViewModel()

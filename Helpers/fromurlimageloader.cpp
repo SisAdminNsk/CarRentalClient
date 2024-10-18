@@ -80,3 +80,29 @@ void FromUrlImageLoader::OnImageDownloaded(QNetworkReply *reply, CarCardViewMode
        emit OnAllImagesDownloaded(carList);
     }
 }
+
+SingleUrlImageLoader::SingleUrlImageLoader(QObject *parent) : QObject{parent} {
+
+}
+
+void SingleUrlImageLoader::SendRequest(const QString& imageUrl){
+
+    QUrl url(imageUrl);
+    QNetworkRequest request(url);
+    QNetworkReply *reply = manager.get(request);
+
+    connect(reply, &QNetworkReply::finished, [this, reply]() {
+        this->OnImageDownloaded(reply);
+    });
+}
+
+void SingleUrlImageLoader::OnImageDownloaded(QNetworkReply *reply){
+
+    if (reply->error() == QNetworkReply::NoError) {
+
+        QPixmap pixmap;
+        pixmap.loadFromData(reply->readAll());
+
+        emit this->ImageDownloaded(pixmap);
+    }
+}

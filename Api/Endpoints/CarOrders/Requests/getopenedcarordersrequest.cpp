@@ -3,10 +3,10 @@
 
 #include <QUrlQuery>
 
-GetOpenedCarOrdersRequest::GetOpenedCarOrdersRequest(const QString& authorizationToken, const QString& carsharingUserId, QObject *parent)
+GetOpenedCarOrdersRequest::GetOpenedCarOrdersRequest(const QString& authorizationToken, const QString& userId, QObject *parent)
     : BaseApiRequest{parent},
     authorizationToken(authorizationToken),
-    carsharingUserId(carsharingUserId)
+    userId(userId)
 {
     this->Setup(new GetOpenedCarOrdersReplyHandler(this,this));
 }
@@ -17,10 +17,10 @@ QNetworkReply* GetOpenedCarOrdersRequest::SendApiRequest(){
 
 void GetOpenedCarOrdersRequest::SetupRequest(){
 
-    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/GetOpenedCarReservationsByCarsharingUserId"));
+    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/GetOpenedCarReservationsByUserId"));
 
     QUrlQuery query;
-    query.addQueryItem("carsharingUserId", carsharingUserId);
+    query.addQueryItem("userId", userId);
 
     url.setQuery(query);
 

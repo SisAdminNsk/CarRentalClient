@@ -36,4 +36,23 @@ signals:
     void OnAllImagesDownloaded(QList<CarCardViewModel*> carCards);
 };
 
+
+
+
+
+
+class SingleUrlImageLoader : public QObject{
+    Q_OBJECT
+public:
+    explicit SingleUrlImageLoader(QObject *parent = nullptr);
+
+    void SendRequest(const QString& imageUrl);
+private:
+    QNetworkAccessManager manager;
+private slots:
+    void OnImageDownloaded(QNetworkReply *reply);
+signals:
+    void ImageDownloaded(QPixmap pixmap);
+};
+
 #endif // FROMURLIMAGELOADER_H

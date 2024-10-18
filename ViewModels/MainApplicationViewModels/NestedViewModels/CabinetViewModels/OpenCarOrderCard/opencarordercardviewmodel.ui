@@ -6,109 +6,283 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>462</height>
+    <width>1093</width>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background-color: rgb(246, 255, 212);
+}
+</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="3" column="1">
-      <widget class="QLabel" name="price">
-       <property name="text">
-        <string>90000 рублей</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="deadlineDate">
-       <property name="text">
-        <string>18/10/2024, до 12 часов</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Оставшееся время аренды</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Отвезти в офис к</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="carOrderId">
-       <property name="text">
-        <string>33efb94c-1a27-45c6-9e53-7c31677ea35e</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Стоимость аренды</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="remainLeaseDateTime">
-       <property name="text">
-        <string>2 Дня, 12 часов, 35 минут</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="7,2,2">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,4">
      <item>
-      <widget class="QLabel" name="carImage">
-       <property name="text">
-        <string>CarImage</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_10">
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
          <property name="text">
-          <string>UID-автомобиля</string>
+          <string>Оставшееся время аренды</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="carId">
+       <item row="0" column="1">
+        <widget class="QLabel" name="remainLeaseDateTime">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
          <property name="text">
-          <string>33efb94c-1a27-45c6-9e53-7c31677ea35e</string>
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Привезти в офис к</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="deadlineDate">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Стоимость аренды</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="price">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="faghfh">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>UID-заказа</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="carOrderId">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLineEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Статус заказа</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="label_13">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="carName">
-       <property name="text">
-        <string>CarName</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="7,2,2">
+       <item>
+        <widget class="QLabel" name="carImage">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+}</string>
+         </property>
+         <property name="text">
+          <string>CarImage</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="carName">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 40px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Название авто</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="gaga">
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+           </property>
+           <property name="text">
+            <string>UID-автомобиля</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="carId">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLineEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

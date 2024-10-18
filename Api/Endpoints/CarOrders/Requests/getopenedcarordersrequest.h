@@ -10,7 +10,7 @@ class GetOpenedCarOrdersRequest : public BaseApiRequest
 {
     Q_OBJECT
 public:
-    explicit GetOpenedCarOrdersRequest(const QString& authorizationToken, const QString& carsharingUserId, QObject *parent = nullptr);
+    explicit GetOpenedCarOrdersRequest(const QString& authorizationToken, const QString& userId, QObject *parent = nullptr);
     virtual QNetworkReply* SendApiRequest() override;
     virtual void SetupRequest() override;
 
@@ -18,7 +18,7 @@ signals:
     void OnSuccessSingal(const QList<OpenedCarReservationResonse>& openedReservations);
     void OnFailureSignal(const QString &errorMessage);
 private:
-    QString carsharingUserId;
+    QString userId;
     QString authorizationToken;
 };
 

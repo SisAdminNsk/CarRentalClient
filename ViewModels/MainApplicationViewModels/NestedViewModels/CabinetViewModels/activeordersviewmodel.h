@@ -2,7 +2,9 @@
 #define ACTIVEORDERSVIEWMODEL_H
 
 #include <QWidget>
+
 #include "Api/Dto/loginresponse.h"
+#include "Api/Dto/openedcarreservationresonse.h"
 
 namespace Ui {
 class ActiveOrdersViewModel;
@@ -15,6 +17,8 @@ class ActiveOrdersViewModel : public QWidget
 public:
     explicit ActiveOrdersViewModel(const LoginResponse& loginResponse, QWidget *parent = nullptr);
     ~ActiveOrdersViewModel();
+
+    void InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations);
 
 private:
     Ui::ActiveOrdersViewModel *ui;

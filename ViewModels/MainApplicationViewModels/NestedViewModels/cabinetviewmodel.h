@@ -5,6 +5,7 @@
 
 #include "Api/Dto/loginresponse.h"
 #include "Api/Dto/carsharinguserdto.h"
+#include "Api/Dto/openedcarreservationresonse.h"
 
 #include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.h"
 #include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.h"
@@ -24,6 +25,8 @@ public:
 
     void SetPersonalDataScene();
     void FillProfileData(const CarsharingUserDto& carsharingUser);
+    void LoadOpenedCarOrders();
+    void LoadClosedCarOrders();
 
 private:
     Ui::CabinetViewModel *ui;
@@ -31,10 +34,15 @@ private:
     PersonalDataViewModel *personalViewModel;
     ActiveOrdersViewModel *activeOrdersViewModel;
     ClosedOrdersViewModel *closedOrdersViewModel;
+
+    LoginResponse loginResponse;
 private slots:
     void OnPersonalDataButtonClicked();
     void OnActiveOrdersButtonClicked();
     void OnClosedOrdersButtonClicked();
+
+    void OnGettingOpenedCarOrdersSuccess(const QList<OpenedCarReservationResonse>& openedCarReservations);
+    void OnGettingOpenedCarOrdersFailure(const QString& errorMessage);
 };
 
 #endif // CABINETVIEWMODEL_H

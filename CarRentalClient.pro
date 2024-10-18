@@ -35,10 +35,13 @@ SOURCES += \
         Api/Dto/getcarsresponse.cpp \
         Api/Dto/logindto.cpp \
         Api/Dto/loginresponse.cpp \
+        Api/Dto/openedcarreservationresonse.cpp \
         Api/Dto/registratedto.cpp \
         Api/Endpoints/CarOrders/Replies/createcarorderreplyhandler.cpp \
+        Api/Endpoints/CarOrders/Replies/getopenedcarordersreplyhandler.cpp \
         Api/Endpoints/CarOrders/Replies/getservertimereplyhandler.cpp \
         Api/Endpoints/CarOrders/Requests/createcarorderrequest.cpp \
+        Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.cpp \
         Api/Endpoints/CarOrders/Requests/getservertimerequest.cpp \
         Api/Endpoints/Cars/Replies/getcarsreplyhandler.cpp \
         Api/Endpoints/Cars/Requests/getcarsrequest.cpp \
@@ -57,8 +60,10 @@ SOURCES += \
         Api/Endpoints/baseapireplyhandler.cpp \
         Api/Endpoints/baseapirequest.cpp \
         Configuration/configurationmanager.cpp \
+        Helpers/fromqstringdatetimetoqdatetime.cpp \
         Helpers/fromurlimageloader.cpp \
         Models/rentalpricecalculator.cpp \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/OpenCarOrderCard/opencarordercardviewmodel.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.cpp \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.cpp \
@@ -85,10 +90,13 @@ HEADERS += \
         Api/Dto/getcarsresponse.h \
         Api/Dto/logindto.h \
         Api/Dto/loginresponse.h \
+        Api/Dto/openedcarreservationresonse.h \
         Api/Dto/registratedto.h \
         Api/Endpoints/CarOrders/Replies/createcarorderreplyhandler.h \
+        Api/Endpoints/CarOrders/Replies/getopenedcarordersreplyhandler.h \
         Api/Endpoints/CarOrders/Replies/getservertimereplyhandler.h \
         Api/Endpoints/CarOrders/Requests/createcarorderrequest.h \
+        Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.h \
         Api/Endpoints/CarOrders/Requests/getservertimerequest.h \
         Api/Endpoints/Cars/Replies/getcarsreplyhandler.h \
         Api/Endpoints/Cars/Requests/getcarsrequest.h \
@@ -107,8 +115,10 @@ HEADERS += \
         Api/Endpoints/baseapireplyhandler.h \
         Api/Endpoints/baseapirequest.h \
         Configuration/configurationmanager.h \
+        Helpers/fromqstringdatetimetoqdatetime.h \
         Helpers/fromurlimageloader.h \
         Models/rentalpricecalculator.h \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/OpenCarOrderCard/opencarordercardviewmodel.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.h \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.h \
@@ -126,6 +136,7 @@ HEADERS += \
         mainwindow.h
 
 FORMS += \
+        ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/OpenCarOrderCard/opencarordercardviewmodel.ui \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/activeordersviewmodel.ui \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/closedordersviewmodel.ui \
         ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/personaldataviewmodel.ui \

@@ -3,15 +3,8 @@
 
 #include <QMessageBox>
 
-#include "Api/Dto/createcarorderdto.h"
-#include "Api/Endpoints/CarOrders/Requests/createcarorderrequest.h"
 #include "Api/Endpoints/Users/Requests/loginrequest.h"
-
 #include "clientcache.h"
-
-#include "ViewModels/MainApplicationViewModels/NestedViewModels/CarCard/carreservationform.h"
-#include "Api/Dto/cardto.h"
-
 #include "ViewModels/MainApplicationViewModels/carrentalclientmainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -20,26 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     Setup();
-
-    // тестовый коммит
-
-    //CreateCarOrderDto createCarOrderDto;
-    //createCarOrderDto.ApproximatePrice = 100;
-    //createCarOrderDto.Comment = "f;ajkgjak";
-    //createCarOrderDto.CarId = "d21a8278-af57-4507-b9d3-75b13a6bdc6c";
-    //createCarOrderDto.CarsharingUserId = "f9c4956a-d8ba-4e57-85b0-3c9963f2c248";
-    //createCarOrderDto.StartOfLease = "2024-10-07T10:11:01.204Z";
-    //createCarOrderDto.EndOfLease = "2024-10-07T10:12:01.204Z";
-
-    //auto createCarOrderRequest = new CreateCarOrderRequest("", createCarOrderDto);
-    //createCarOrderRequest->SendApiRequest();
-
-    //auto date = QDate(2000,10,5);
-    //auto time = QTime(10,20,20);
-
-    //auto dateTime = QDateTime(date, time);
-    //auto carReservationForm = new CarReservationForm(CarDto(), QPixmap(), CarsharingUserDto(), dateTime);
-    //carReservationForm->show();
 }
 
 void MainWindow::Setup(){

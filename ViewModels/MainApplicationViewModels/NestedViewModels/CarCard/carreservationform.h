@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QDateEdit>
 #include <QComboBox>
+#include <QTimer>
 
 #include "Api/Dto/cardto.h"
 #include "Api/Dto/createcarorderdto.h"
@@ -34,6 +35,8 @@ private:
     void Setup();
     void SetupInputWidgets();
     void SetupWindow();
+    void SetupLoadingTimer();
+    void OnTimerTick();
 
     void FillPersonalData();
     void FillCarData();
@@ -49,6 +52,11 @@ private:
     CarDto car;
     QPixmap carImagePixmap;
     CarsharingUserDto carsharingUser;
+    QString createOrderButtonText;
+
+    QTimer *loadingTimer = nullptr;
+    int remainingTimeInSec;
+    int timerTickInMs;
 
     CreateCarOrderRequest *createCarOrderRequest;
     Ui::CarReservationForm *ui;
@@ -66,6 +74,9 @@ private slots:
 
     void OnCreateCarOrderSuccess(const QString& message);
     void OnCreateCarOrderFailure(const QString& errorMessage);
+
+    void OnRequestStarted();
+    void OnRequestFinished();
 };
 
 #endif // CARRESERVATIONFORM_H

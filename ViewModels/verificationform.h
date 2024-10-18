@@ -31,11 +31,11 @@ private:
 
     LoadingLabel *loadingLabel = nullptr;
     QNetworkCookieJar *cookieJar = nullptr;
+    QTimer *sendAgainTimer = nullptr;
 
     int remainingTimeInSec;
     int timerTickInMs;
 
-    QTimer *sendAgainTimer = nullptr;
 
     void SetupTimer();
     void SetupInputVerificationCode();

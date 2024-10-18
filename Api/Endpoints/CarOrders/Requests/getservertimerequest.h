@@ -20,6 +20,7 @@ private:
     int dateTimeOffset;
     QUrl url;
     QString authorizationToken;
+
 };
 
 #endif // GETSERVERTIMEREQUEST_H

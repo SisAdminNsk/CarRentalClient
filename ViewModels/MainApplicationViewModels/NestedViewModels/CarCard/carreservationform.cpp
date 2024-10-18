@@ -31,12 +31,57 @@ CarReservationForm::~CarReservationForm()
 
 void CarReservationForm::OnCreateCarOrderSuccess(const QString& message){
 
+    OnRequestFinished();
+
     QMessageBox::information(this, "Статус бронирования", message);
+
+    this->deleteLater();
+    close();
 }
 
 void CarReservationForm::OnCreateCarOrderFailure(const QString& errorMessage){
 
+    OnRequestFinished();
+
     QMessageBox::information(this, "Ошибка создания заявки", errorMessage);
+}
+
+void CarReservationForm::OnRequestStarted(){
+    createOrderButtonText = ui->sendOrder->text();
+    ui->sendOrder->setEnabled(false);
+    ui->sendOrder->setText("Выполняется запрос, пожалуйста подождите   ");
+    SetupLoadingTimer();
+
+    int tickDurationInMsc = 200;
+    loadingTimer->start(tickDurationInMsc);
+}
+
+void CarReservationForm::OnRequestFinished(){
+    ui->sendOrder->setText(createOrderButtonText);
+    ui->sendOrder->setEnabled(true);
+    delete loadingTimer;
+}
+
+void CarReservationForm::SetupLoadingTimer(){
+    loadingTimer = new QTimer(this);
+    QObject::connect(loadingTimer, &QTimer::timeout, this, &CarReservationForm::OnTimerTick);
+}
+
+void CarReservationForm::OnTimerTick(){
+
+    static int dotCount = 0;
+    QString text = "Выполняется запрос, пожалуйста подождите   ";
+
+    // Добавляем точки в зависимости от счетчика
+    for (int i = 0; i < dotCount; ++i) {
+        text[text.length() - 3 + i] = '.';
+    }
+
+    // Устанавливаем текст для кнопки
+    ui->sendOrder->setText(text);
+
+    // Увеличиваем счетчик и обнуляем, если нужно
+    dotCount = (dotCount + 1) % 4; // 4 - количество точек + 1
 }
 
 void CarReservationForm::SetupInputWidgets(){
@@ -69,6 +114,7 @@ void CarReservationForm::OnCreateCarOrderButtonClicked(){
     connect(request, &CreateCarOrderRequest::OnSuccessSingal, this, &CarReservationForm::OnCreateCarOrderSuccess);
     connect(request, &CreateCarOrderRequest::OnFailureSignal, this, &CarReservationForm::OnCreateCarOrderFailure);
 
+    OnRequestStarted();
     request->SendApiRequest();
 }
 

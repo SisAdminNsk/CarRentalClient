@@ -1,9 +1,10 @@
 #include "closedordersviewmodel.h"
 #include "ui_closedordersviewmodel.h"
 
-ClosedOrdersViewModel::ClosedOrdersViewModel(QWidget *parent) :
+ClosedOrdersViewModel::ClosedOrdersViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ClosedOrdersViewModel)
+    ui(new Ui::ClosedOrdersViewModel),
+    loginResponse(loginResponse)
 {
     ui->setupUi(this);
 }

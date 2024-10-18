@@ -1,9 +1,10 @@
 #include "activeordersviewmodel.h"
 #include "ui_activeordersviewmodel.h"
 
-ActiveOrdersViewModel::ActiveOrdersViewModel(QWidget *parent) :
+ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ActiveOrdersViewModel)
+    ui(new Ui::ActiveOrdersViewModel),
+    loginResponse(loginResponse)
 {
     ui->setupUi(this);
 }

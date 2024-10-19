@@ -4,6 +4,7 @@
 #include <QMessageBox>
 
 #include "Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.h"
+#include "clientcache.h"
 
 CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
@@ -24,8 +25,6 @@ CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *
     QObject::connect(ui->profileDataButton, &QPushButton::clicked, this, &CabinetViewModel::OnPersonalDataButtonClicked);
     QObject::connect(ui->activeOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnActiveOrdersButtonClicked);
     QObject::connect(ui->closedOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnClosedOrdersButtonClicked);
-
-    LoadOpenedCarOrders();
 }
 
 void CabinetViewModel::FillProfileData(const CarsharingUserDto& carsharingUser){
@@ -51,7 +50,9 @@ void CabinetViewModel::OnClosedOrdersButtonClicked(){
 
 void CabinetViewModel::LoadOpenedCarOrders(){
 
-    auto getOpenedCarOrdersRequest = new GetOpenedCarOrdersRequest(loginResponse.Token, loginResponse.UserId);
+    auto carsharingUserId = ClientCache::instance().GetCarsharingUserProfile().Id;
+
+    auto getOpenedCarOrdersRequest = new GetOpenedCarOrdersRequest(loginResponse.Token, carsharingUserId);
 
     connect(getOpenedCarOrdersRequest, &GetOpenedCarOrdersRequest::OnSuccessSingal, this,
             &CabinetViewModel::OnGettingOpenedCarOrdersSuccess);

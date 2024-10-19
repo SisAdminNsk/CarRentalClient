@@ -17,8 +17,16 @@ ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse,
 void ActiveOrdersViewModel::InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations){
 
     for(auto& openedReservation : openedCarReservations){
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation,this));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation,this));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
     }
 }
 

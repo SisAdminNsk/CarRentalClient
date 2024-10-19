@@ -16,15 +16,14 @@
   <property name="styleSheet">
    <string notr="true">QWidget {
 background-color: rgb(246, 255, 212);
-}
-</string>
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,4">
      <item>
       <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QLabel" name="label">
          <property name="styleSheet">
           <string notr="true">QLabel{
@@ -42,44 +41,8 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="remainLeaseDateTime">
-         <property name="styleSheet">
-          <string notr="true">QLabel{
-	font-size: 12pt;
-	font-weight: 600;
-}
-
-QLabel {
-	border: 1.5px solid rgb(180,226,155);
-	border-radius: 50px;
-}</string>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="styleSheet">
-          <string notr="true">QLabel{
-	font-size: 12pt;
-	font-weight: 600;
-}
-
-QLabel {
-	border: 1.5px solid rgb(180,226,155);
-	border-radius: 50px;
-}</string>
-         </property>
-         <property name="text">
-          <string>Привезти в офис к</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="1">
-        <widget class="QLabel" name="deadlineDate">
+        <widget class="QLabel" name="remainLeaseDateTime">
          <property name="styleSheet">
           <string notr="true">QLabel{
 	font-size: 12pt;
@@ -97,6 +60,42 @@ QLabel {
         </widget>
        </item>
        <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Привезти в офис к</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="deadlineDate">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
         <widget class="QLabel" name="label_8">
          <property name="styleSheet">
           <string notr="true">QLabel{
@@ -114,7 +113,7 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QLabel" name="price">
          <property name="styleSheet">
           <string notr="true">QLabel{
@@ -132,7 +131,7 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="faghfh">
          <property name="styleSheet">
           <string notr="true">QLabel{
@@ -150,7 +149,7 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QLineEdit" name="carOrderId">
          <property name="styleSheet">
           <string notr="true">QLineEdit {
@@ -163,7 +162,7 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_12">
          <property name="styleSheet">
           <string notr="true">QLabel{
@@ -181,8 +180,8 @@ QLabel {
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="label_13">
+       <item row="5" column="1">
+        <widget class="QLabel" name="status">
          <property name="styleSheet">
           <string notr="true">QLabel {
 	border: 1.5px solid rgb(180,226,155);
@@ -193,7 +192,81 @@ QLabel {
 }</string>
          </property>
          <property name="text">
+          <string>Ожидание начала аренды</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Комментарий</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QTextEdit" name="comment">
+         <property name="styleSheet">
+          <string notr="true">QTextEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 20px;
+}QTextEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="startOfLease">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
           <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Время начала аренды</string>
          </property>
         </widget>
        </item>

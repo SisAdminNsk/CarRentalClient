@@ -9,7 +9,7 @@ class OpenedCarReservationResonse
 {
 public:
     OpenedCarReservationResonse(QString id, QString carId, QString carName, QString carImageUri,int rentalTimeRemainInMinutes,
-double price, QDateTime deadlineDateTime);
+double price, QDateTime deadlineDateTime, QDateTime startOfLease, QString status, QString comment);
 
     OpenedCarReservationResonse(const QJsonObject& document);
 
@@ -17,9 +17,12 @@ double price, QDateTime deadlineDateTime);
     QString CarId;
     QString CarName;
     QString CarImageUri;
+    QString Status;
+    QString Comment;
     int RentalTimeRemainInMinutes;
     double Price;
     QDateTime DeadlineDateTime;
+    QDateTime StartOfLease;
 };
 
 #endif // OPENEDCARRESERVATIONRESONSE_H

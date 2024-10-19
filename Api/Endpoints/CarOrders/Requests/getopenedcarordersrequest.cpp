@@ -17,10 +17,10 @@ QNetworkReply* GetOpenedCarOrdersRequest::SendApiRequest(){
 
 void GetOpenedCarOrdersRequest::SetupRequest(){
 
-    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/GetOpenedCarReservationsByUserId"));
+    auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/GetOpenedCarReservationsByCarsharingUserId"));
 
     QUrlQuery query;
-    query.addQueryItem("userId", userId);
+    query.addQueryItem("carsharingUserId", userId);
 
     url.setQuery(query);
 

@@ -1,5 +1,6 @@
 #include "carrentalclientmainwindow.h"
 #include "ui_carrentalclientmainwindow.h"
+#include "clientcache.h"
 
 #include <QMessageBox>
 
@@ -87,6 +88,7 @@ void CarRentalClientMainWindow::WhenGettingCarsharingUserWasSuccess(const Carsha
     isCarsharingUserExists = true;
 
     cabinetViewModel->FillProfileData(carsharingUser);
+    cabinetViewModel->LoadOpenedCarOrders();
 }
 
 void CarRentalClientMainWindow::WhenGettingCarsharingUserWasFailure(const QList<QString>& errors){

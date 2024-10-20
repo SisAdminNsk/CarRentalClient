@@ -1,7 +1,11 @@
 #include "activeordersviewmodel.h"
 #include "ui_activeordersviewmodel.h"
 
-#include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/OpenCarOrderCard/opencarordercardviewmodel.h"
+#include <QMessageBox>
+
+#include "clientcache.h"
+#include "Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.h"
+
 
 ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
@@ -12,23 +16,84 @@ ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse,
 
     ui->progressBar->reset();
     ui->progressBar->hide();
+
+    Setup();
+}
+
+void ActiveOrdersViewModel::Setup(){
+    connect(ui->updateButton, &QPushButton::clicked, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
 }
 
 void ActiveOrdersViewModel::InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations){
 
-    for(auto& openedReservation : openedCarReservations){
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
-        ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+    QList<OpenCarOrderCardViewModel*> openCarOrdersViewModels;
+
+    for (int i = 0; i < ui->verticalLayout->count(); ++i){
+        QWidget* widget = ui->verticalLayout->itemAt(i)->widget();
+        OpenCarOrderCardViewModel* openCarOrderViewModel = qobject_cast<OpenCarOrderCardViewModel*>(widget);
+
+        if(openCarOrderViewModel != nullptr){
+            openCarOrdersViewModels.append(openCarOrderViewModel);
+        }
+    }
+
+    for(const auto& openedReservation : openedCarReservations){
+
+        if(std::any_of(openCarOrdersViewModels.begin(),
+            openCarOrdersViewModels.end(),
+            [openedReservation](OpenCarOrderCardViewModel* model)
+            { return model->GetId() == openedReservation.Id; }))
+        {
+
+            auto it = std::find_if(openCarOrdersViewModels.begin(),
+                openCarOrdersViewModels.end(),
+                [openedReservation](OpenCarOrderCardViewModel* model)
+                { return model->GetId() == openedReservation.Id;});
+
+            if(it != openCarOrdersViewModels.end()){
+                auto order = *it;
+                order->UpdateFields(openedReservation);
+            }
+        }
+        else{
+            ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
+        }
     }
 }
+
+void ActiveOrdersViewModel::OnUpdateButtonClicked(){
+
+    auto carhsaringUserId = ClientCache::instance().GetCarsharingUserProfile().Id;
+    auto getOpenedCarOrdersRequest = new GetOpenedCarOrdersRequest(loginResponse.Token,carhsaringUserId);
+
+    connect(getOpenedCarOrdersRequest, &GetOpenedCarOrdersRequest::OnSuccessSingal,this,
+            &ActiveOrdersViewModel::OnGettingOpenCarOrdersSuccess);
+
+    connect(getOpenedCarOrdersRequest, &GetOpenedCarOrdersRequest::OnFailureSignal, this,
+            &ActiveOrdersViewModel::OnGettingOpenCarOrdersFailure);
+
+    getOpenedCarOrdersRequest->SendApiRequest();
+    OnGetOpenOrdersRequestStarted();
+}
+
+void ActiveOrdersViewModel::OnGetOpenOrdersRequestStarted(){
+    ui->updateButton->setEnabled(false);
+}
+
+void ActiveOrdersViewModel::OnGetOpenOrdersRequestFinished(){
+    ui->updateButton->setEnabled(true);
+}
+
+void ActiveOrdersViewModel::OnGettingOpenCarOrdersSuccess(const QList<OpenedCarReservationResonse>& openedReservations){
+    OnGetOpenOrdersRequestFinished();
+    InitializeCatalog(openedReservations);
+}
+
+void ActiveOrdersViewModel::OnGettingOpenCarOrdersFailure(const QString& errorMessage){
+    OnGetOpenOrdersRequestFinished();
+    QMessageBox::information(this, "Ошибка получения списка активных заказов", errorMessage);
+}
+
 
 ActiveOrdersViewModel::~ActiveOrdersViewModel()
 {

@@ -16,6 +16,10 @@ OpenCarOrderCardViewModel::OpenCarOrderCardViewModel(
     Setup();
 }
 
+QString OpenCarOrderCardViewModel::GetId(){
+    return ui->carOrderId->text();
+}
+
 void OpenCarOrderCardViewModel::Setup(){
 
     LoadCarImage(openedCarReservation.CarImageUri);
@@ -35,6 +39,11 @@ void OpenCarOrderCardViewModel::Setup(){
 
 }
 
+void OpenCarOrderCardViewModel::UpdateFields(const OpenedCarReservationResonse& newData){
+    ui->status->setText(newData.Status);
+    ui->remainLeaseDateTime->setText(""); // преобразовать минуты в нормальный формат
+}
+
 void OpenCarOrderCardViewModel::LoadCarImage(const QString& imageUrl){
 
     auto imageLoader = new SingleUrlImageLoader(this);
@@ -48,7 +57,7 @@ void OpenCarOrderCardViewModel::OnCarImageDonwloaded(QPixmap imagePixmap){
 
     ui->carImage->setPixmap(imagePixmap.scaled(QSize(600,600),Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->carImage->setScaledContents(true);
-    ui->carImage->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // Политика размера
+    ui->carImage->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 OpenCarOrderCardViewModel::~OpenCarOrderCardViewModel()

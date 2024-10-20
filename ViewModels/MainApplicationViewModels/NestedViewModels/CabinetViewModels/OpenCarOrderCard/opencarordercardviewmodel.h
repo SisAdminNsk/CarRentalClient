@@ -18,6 +18,9 @@ public:
         const OpenedCarReservationResonse& openedCarReservation, QWidget *parent = nullptr);
     ~OpenCarOrderCardViewModel();
 
+    QString GetId();
+    void UpdateFields(const OpenedCarReservationResonse& newData);
+
 private:
     void Setup();
     void LoadCarImage(const QString& imageUrl);

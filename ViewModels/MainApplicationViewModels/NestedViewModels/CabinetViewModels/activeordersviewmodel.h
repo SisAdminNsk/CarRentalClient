@@ -5,6 +5,7 @@
 
 #include "Api/Dto/loginresponse.h"
 #include "Api/Dto/openedcarreservationresonse.h"
+#include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/OpenCarOrderCard/opencarordercardviewmodel.h"
 
 namespace Ui {
 class ActiveOrdersViewModel;
@@ -21,8 +22,16 @@ public:
     void InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations);
 
 private:
+    void Setup();
+    void OnGetOpenOrdersRequestStarted();
+    void OnGetOpenOrdersRequestFinished();
+    void OnUpdateButtonClicked();
+
     Ui::ActiveOrdersViewModel *ui;
     LoginResponse loginResponse;
+private slots:
+    void OnGettingOpenCarOrdersSuccess(const QList<OpenedCarReservationResonse>& openedReservations);
+    void OnGettingOpenCarOrdersFailure(const QString& errorMessage);
 };
 
 #endif // ACTIVEORDERSVIEWMODEL_H

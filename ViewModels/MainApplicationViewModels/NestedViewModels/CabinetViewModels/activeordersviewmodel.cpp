@@ -59,6 +59,22 @@ void ActiveOrdersViewModel::InitializeCatalog(const QList<OpenedCarReservationRe
             ui->verticalLayout->addWidget(new OpenCarOrderCardViewModel(openedReservation));
         }
     }
+
+    // Удаление виджетов, которые не присутствуют в openedCarReservations
+    for (auto it = openCarOrdersViewModels.begin(); it != openCarOrdersViewModels.end(); ) {
+        OpenCarOrderCardViewModel* order = *it;
+
+        bool exists = std::any_of(openedCarReservations.begin(), openedCarReservations.end(),
+            [order](const OpenedCarReservationResonse& reservation) { return reservation.Id == order->GetId(); });
+
+        if (!exists) {
+            ui->verticalLayout->removeWidget(order);
+            delete order;
+            it = openCarOrdersViewModels.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void ActiveOrdersViewModel::OnUpdateButtonClicked(){

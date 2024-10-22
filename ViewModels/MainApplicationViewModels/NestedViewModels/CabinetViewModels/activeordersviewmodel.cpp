@@ -2,6 +2,7 @@
 #include "ui_activeordersviewmodel.h"
 
 #include <QMessageBox>
+#include <QTimer>
 
 #include "clientcache.h"
 #include "Api/Endpoints/CarOrders/Requests/getopenedcarordersrequest.h"
@@ -18,6 +19,12 @@ ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse,
     ui->progressBar->hide();
 
     Setup();
+
+    QTimer *timer = new QTimer();
+    connect(timer, &QTimer::timeout, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
+    // один раз шлет запрос
+    // после этого запонмиает значение через которые начнется заказ и шлет еще один запрос который обновляет состояние
+    timer->start(60000);
 }
 
 void ActiveOrdersViewModel::Setup(){

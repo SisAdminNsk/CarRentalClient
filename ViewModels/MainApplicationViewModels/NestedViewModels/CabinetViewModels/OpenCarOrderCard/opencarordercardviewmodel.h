@@ -2,6 +2,7 @@
 #define OPENCARORDERCARDVIEWMODEL_H
 
 #include <QWidget>
+#include <QTimer>
 
 #include "Api/Dto/openedcarreservationresonse.h"
 
@@ -24,9 +25,13 @@ public:
 private:
     void Setup();
     void LoadCarImage(const QString& imageUrl);
+    void OnTimerTick();
 
     OpenedCarReservationResonse openedCarReservation;
     Ui::OpenCarOrderCardViewModel *ui;
+    QTimer* reservationTimer;
+
+    QString FormatTime(int seconds);
 
 private slots:
     void OnCarImageDonwloaded(QPixmap imagePixmap);

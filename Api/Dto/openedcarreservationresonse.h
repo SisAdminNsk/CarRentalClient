@@ -8,7 +8,7 @@
 class OpenedCarReservationResonse
 {
 public:
-    OpenedCarReservationResonse(QString id, QString carId, QString carName, QString carImageUri,int rentalTimeRemainInMinutes,
+    OpenedCarReservationResonse(QString id, QString carId, QString carName, QString carImageUri,int rentalTimeRemainInSeconds,
 double price, QDateTime deadlineDateTime, QDateTime startOfLease, QString status, QString comment);
 
     OpenedCarReservationResonse(const QJsonObject& document);
@@ -19,7 +19,7 @@ double price, QDateTime deadlineDateTime, QDateTime startOfLease, QString status
     QString CarImageUri;
     QString Status;
     QString Comment;
-    int RentalTimeRemainInMinutes;
+    int RentalTimeRemainInSeconds;
     double Price;
     QDateTime DeadlineDateTime;
     QDateTime StartOfLease;

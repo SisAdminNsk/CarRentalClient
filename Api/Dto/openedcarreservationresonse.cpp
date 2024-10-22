@@ -6,7 +6,7 @@ OpenedCarReservationResonse::OpenedCarReservationResonse(
     QString carId,
     QString carName,
     QString carImageUri,
-    int rentalTimeRemainInMinutes,
+    int rentalTimeRemainInSeconds,
     double price,
     QDateTime deadlineDateTime,
     QDateTime startOfLease,
@@ -19,7 +19,7 @@ OpenedCarReservationResonse::OpenedCarReservationResonse(
     CarImageUri = carImageUri;
     Status = status;
     Comment = comment;
-    RentalTimeRemainInMinutes = rentalTimeRemainInMinutes;
+    RentalTimeRemainInSeconds = rentalTimeRemainInSeconds;
     Price = price;
     DeadlineDateTime = deadlineDateTime;
     StartOfLease = startOfLease;
@@ -32,7 +32,7 @@ OpenedCarReservationResonse::OpenedCarReservationResonse(const QJsonObject& docu
     Status = document.value("status").toString();
     Comment = document.value("comment").toString();
     CarImageUri = document.value("carImageUri").toString();
-    RentalTimeRemainInMinutes = document.value("rentalTimeRemainInMinutes").toInt();
+    RentalTimeRemainInSeconds = document.value("rentalTimeRemainInSeconds").toInt();
     Price = document.value("price").toDouble();
     DeadlineDateTime = FromQStringDateTimeToQDateTime::ConvertLikeISODateWithMs(
         (document.value("deadlineDateTime").toString()));

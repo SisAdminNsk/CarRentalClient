@@ -42,7 +42,7 @@ background-color: rgb(246, 255, 212);
            <string>Пароль</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -113,7 +113,7 @@ background-color: rgb(246, 255, 212);
            <string>Пароль еще раз</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -129,7 +129,7 @@ background-color: rgb(246, 255, 212);
            <string>Электорнная почта</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -254,7 +254,7 @@ background-color: rgb(246, 255, 212);
            <string>Имя пользователя</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -273,10 +273,10 @@ background-color: rgb(246, 255, 212);
       <item>
        <spacer name="verticalSpacer">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
         <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
+         <enum>QSizePolicy::Policy::Fixed</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -291,10 +291,10 @@ background-color: rgb(246, 255, 212);
         <item row="0" column="0">
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
+           <enum>QSizePolicy::Policy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -307,10 +307,10 @@ background-color: rgb(246, 255, 212);
         <item row="0" column="2">
          <spacer name="horizontalSpacer">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
+           <enum>QSizePolicy::Policy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -357,7 +357,7 @@ QPushButton:pressed{
       <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -377,14 +377,14 @@ QPushButton:pressed{
          <string>Registration</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item>
        <spacer name="verticalSpacer_3">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>

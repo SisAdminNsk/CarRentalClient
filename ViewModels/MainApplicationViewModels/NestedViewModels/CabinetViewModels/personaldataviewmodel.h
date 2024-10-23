@@ -27,8 +27,8 @@ private:
     LoadingLabel *loadingLabel;
     CreateOrUpdateCarsharingUserRequest *createOrUpdateCarsharingUserRequest = nullptr;
 
-    QString lineEditValidStyleSheet = "QLineEdit { border: 2px solid green; }";
-    QString lineEditNotValidStyleSheet = "QLineEdit { border: 2px solid red; }";
+    QString lineEditValidStyleSheet = "QLineEdit { border: 2px solid green; font-size: 16pt; }";
+    QString lineEditNotValidStyleSheet = "QLineEdit { border: 2px solid red; font-size: 16pt; }";
 
     bool isValidAge = false;
     bool isValidName = false;

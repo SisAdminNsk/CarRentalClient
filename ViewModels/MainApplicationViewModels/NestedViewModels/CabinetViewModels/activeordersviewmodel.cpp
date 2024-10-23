@@ -76,7 +76,7 @@ void ActiveOrdersViewModel::InitializeCatalog(const QList<OpenedCarReservationRe
 
         if (!exists) {
             ui->verticalLayout->removeWidget(order);
-            delete order;
+            delete order; // перемещение в список завершенных заказов
             it = openCarOrdersViewModels.erase(it);
         } else {
             ++it;

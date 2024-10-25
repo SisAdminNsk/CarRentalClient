@@ -20,7 +20,7 @@ public:
     ~ActiveOrdersViewModel();
 
     void InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations);
-
+    void Update();
 private:
     void Setup();
     void OnGetOpenOrdersRequestStarted();

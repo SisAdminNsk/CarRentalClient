@@ -42,10 +42,12 @@ void CabinetViewModel::OnPersonalDataButtonClicked(){
 
 void CabinetViewModel::OnActiveOrdersButtonClicked(){
     ui->stackedWidget->setCurrentWidget(activeOrdersViewModel);
+    activeOrdersViewModel->Update();
 }
 
 void CabinetViewModel::OnClosedOrdersButtonClicked(){
     ui->stackedWidget->setCurrentWidget(closedOrdersViewModel);
+    closedOrdersViewModel->Update();
 }
 
 void CabinetViewModel::LoadOpenedCarOrders(){

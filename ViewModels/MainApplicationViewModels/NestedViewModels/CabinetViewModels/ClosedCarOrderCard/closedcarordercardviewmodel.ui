@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ClosedCarOrderCardViewModel</class>
+ <widget class="QWidget" name="ClosedCarOrderCardViewModel">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>866</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background-color: rgb(246, 255, 212);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,4">
+     <item>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Дата начала аренды</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="startOfLease">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Дата окончания аренды</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="endOfLease">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Стоимость аренды</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="price">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="faghfh">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>UID-заказа</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="carOrderId">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLineEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Статус заказа</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="status">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Комментарий</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QTextEdit" name="comment">
+         <property name="styleSheet">
+          <string notr="true">QTextEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 20px;
+}QTextEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="7,2,2">
+       <item>
+        <widget class="QLabel" name="carImage">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+}</string>
+         </property>
+         <property name="text">
+          <string>CarImage</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="carName">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 40px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Название авто</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="gaga">
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+           </property>
+           <property name="text">
+            <string>UID-автомобиля</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="carId">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit{
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+QLineEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

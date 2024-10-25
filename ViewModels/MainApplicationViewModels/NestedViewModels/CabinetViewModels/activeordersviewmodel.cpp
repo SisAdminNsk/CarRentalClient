@@ -15,19 +15,24 @@ ActiveOrdersViewModel::ActiveOrdersViewModel(const LoginResponse& loginResponse,
 {
     ui->setupUi(this);
 
-    ui->progressBar->reset();
-    ui->progressBar->hide();
-
     Setup();
+}
 
-    QTimer *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
-    // один раз шлет запрос
-    // после этого запонмиает значение через которые начнется заказ и шлет еще один запрос который обновляет состояние
-    timer->start(60000);
+void ActiveOrdersViewModel::Update(){
+    OnUpdateButtonClicked();
 }
 
 void ActiveOrdersViewModel::Setup(){
+
+    ui->progressBar->reset();
+    ui->progressBar->hide();
+
+    //QTimer *timer = new QTimer();
+    //connect(timer, &QTimer::timeout, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
+    // один раз шлет запрос
+    // после этого запонмиает значение через которые начнется заказ и шлет еще один запрос который обновляет состояние
+    //timer->start(60000);
+
     connect(ui->updateButton, &QPushButton::clicked, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
 }
 

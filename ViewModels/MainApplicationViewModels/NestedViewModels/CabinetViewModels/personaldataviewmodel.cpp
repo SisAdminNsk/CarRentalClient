@@ -2,12 +2,15 @@
 #include "ui_personaldataviewmodel.h"
 
 #include "clientcache.h"
+#include "mainwindow.h"
 #include "ViewModels/Validators/personaldatavalidator.h"
+#include "ViewModels/MainApplicationViewModels/NestedViewModels/cabinetviewmodel.h"
 
 #include <QMessageBox>
 
 PersonalDataViewModel::PersonalDataViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
+    parent(parent),
     loginResponse(loginResponse),
     ui(new Ui::PersonalDataViewModel)
 {
@@ -18,6 +21,18 @@ PersonalDataViewModel::PersonalDataViewModel(const LoginResponse& loginResponse,
     lastProfileData.Age = 0;
 
     ConnectWithSignals();
+}
+
+void PersonalDataViewModel::CloseMainWindow(){
+
+    auto cabinetViewModel = dynamic_cast<CabinetViewModel*>(parent);
+
+    if(cabinetViewModel != nullptr){
+        cabinetViewModel->CloseMainWindow();
+    }
+    else{
+        throw std::runtime_error("В Parent передан неверный аргумент в качестве родителя либо не передан совсем");
+    }
 }
 
 void PersonalDataViewModel::OnSaveChangesRequestStarted(){
@@ -216,3 +231,12 @@ PersonalDataViewModel::~PersonalDataViewModel()
 {
     delete ui;
 }
+
+void PersonalDataViewModel::on_pushButton_clicked()
+{
+    CloseMainWindow();
+
+    auto loginForm = new MainWindow();
+    loginForm->show();
+}
+

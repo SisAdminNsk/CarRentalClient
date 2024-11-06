@@ -10,8 +10,8 @@ CarRentalClientMainWindow::CarRentalClientMainWindow(const LoginResponse& loginR
 {
     ui->setupUi(this);
 
-    this->cabinetViewModel = new CabinetViewModel(loginResponse);
-    this->carsViewModel = new CarsViewModel(loginResponse);
+    this->cabinetViewModel = new CabinetViewModel(loginResponse, this);
+    this->carsViewModel = new CarsViewModel(loginResponse, this);
 
     ui->stackedWidget->addWidget(cabinetViewModel);
     ui->stackedWidget->addWidget(carsViewModel);

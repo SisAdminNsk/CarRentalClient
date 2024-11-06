@@ -23,6 +23,9 @@ public:
     void WhenSwappedToView();
     void FillProfileData(const CarsharingUserDto& carsharingUser);
     CarsharingUserDto GetProfileData();
+
+    void CloseMainWindow();
+
 private:
     LoadingLabel *loadingLabel;
     CreateOrUpdateCarsharingUserRequest *createOrUpdateCarsharingUserRequest = nullptr;
@@ -48,6 +51,9 @@ private:
 
     void OnSaveChangesRequestStarted();
     void OnSaveChangesRequestFinished();
+
+    QWidget* parent;
+
 private slots:
 
     void OnSaveChangesButtonClicked();
@@ -62,6 +68,7 @@ private slots:
 
     void OnCreateOrUpdateCarsharingUserSuccess(const QString& message);
     void OnCreateOrUpdateCarsharingUserFailure(const QList<QString>& Errors);
+    void on_pushButton_clicked();
 };
 
 #endif // PERSONALDATAVIEWMODEL_H

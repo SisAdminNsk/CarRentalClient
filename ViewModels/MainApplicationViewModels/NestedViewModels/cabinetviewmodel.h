@@ -28,6 +28,8 @@ public:
     void LoadOpenedCarOrders();
     void LoadClosedCarOrders();
 
+    void CloseMainWindow();
+
 private:
     Ui::CabinetViewModel *ui;
 
@@ -36,6 +38,9 @@ private:
     ClosedOrdersViewModel *closedOrdersViewModel;
 
     LoginResponse loginResponse;
+
+    QWidget* parent;
+
 private slots:
     void OnPersonalDataButtonClicked();
     void OnActiveOrdersButtonClicked();

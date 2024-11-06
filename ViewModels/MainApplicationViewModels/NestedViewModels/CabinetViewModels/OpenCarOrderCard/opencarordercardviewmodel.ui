@@ -304,7 +304,6 @@ QLabel {
 
 QLabel {
 	border: 1.5px solid rgb(180,226,155);
-	border-radius: 40px;
 }</string>
          </property>
          <property name="text">
@@ -327,7 +326,6 @@ QLabel {
 
 QLabel {
 	border: 1.5px solid rgb(180,226,155);
-	border-radius: 50px;
 }</string>
            </property>
            <property name="text">

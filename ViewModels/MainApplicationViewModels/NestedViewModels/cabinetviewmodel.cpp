@@ -8,15 +8,16 @@
 
 CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
+    parent(parent),
     loginResponse(loginResponse),
     ui(new Ui::CabinetViewModel)
 {
     ui->setupUi(this);
 
-    this->personalViewModel = new PersonalDataViewModel(loginResponse);
+    this->personalViewModel = new PersonalDataViewModel(loginResponse, this);
     this->ui->stackedWidget->setCurrentWidget(personalViewModel);
-    this->activeOrdersViewModel = new ActiveOrdersViewModel(loginResponse);
-    this->closedOrdersViewModel = new ClosedOrdersViewModel(loginResponse);
+    this->activeOrdersViewModel = new ActiveOrdersViewModel(loginResponse, this);
+    this->closedOrdersViewModel = new ClosedOrdersViewModel(loginResponse,this);
 
     ui->stackedWidget->addWidget(personalViewModel);
     ui->stackedWidget->addWidget(activeOrdersViewModel);
@@ -25,6 +26,10 @@ CabinetViewModel::CabinetViewModel(const LoginResponse& loginResponse, QWidget *
     QObject::connect(ui->profileDataButton, &QPushButton::clicked, this, &CabinetViewModel::OnPersonalDataButtonClicked);
     QObject::connect(ui->activeOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnActiveOrdersButtonClicked);
     QObject::connect(ui->closedOrdersButton, &QPushButton::clicked, this, &CabinetViewModel::OnClosedOrdersButtonClicked);
+}
+
+void CabinetViewModel::CloseMainWindow(){
+    parent->close();
 }
 
 void CabinetViewModel::FillProfileData(const CarsharingUserDto& carsharingUser){

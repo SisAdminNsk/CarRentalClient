@@ -17,6 +17,7 @@ void FromUrlImageLoader::SetTargetsForDownloadCount(int count){
 }
 
 void FromUrlImageLoader::SendRequest(const QString& urlString, CarCardViewModel* carCard, bool keepOrder){
+
     QUrl url(urlString);
     QNetworkRequest request(url);
     QNetworkReply *reply = manager.get(request);

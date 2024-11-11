@@ -1,6 +1,7 @@
 #include "carreservationform.h"
 #include "ui_carreservationform.h"
 #include <QMessageBox>
+#include <QCalendarWidget>
 
 #include "Models/rentalpricecalculator.h"
 #include "clientcache.h"
@@ -181,7 +182,7 @@ void CarReservationForm::FillPersonalData(){
 
 void CarReservationForm::FillCarData(){
 
-    ui->CarImage->setPixmap(carImagePixmap.scaled(QSize(350,350), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->CarImage->setPixmap(carImagePixmap.scaled(QSize(400,400), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->carName->setText(car.Brand + " " + car.Model);
     ui->carAceleration->setText(QString::number(car.CarAcceleration));
     ui->carPower->setText(QString::number(car.Power));
@@ -190,8 +191,7 @@ void CarReservationForm::FillCarData(){
 }
 
 void CarReservationForm::SetupWindow(){
-    setFixedHeight(400);
-    setFixedWidth(700);
+    setFixedSize(this->size());
 }
 
 void CarReservationForm::Setup(){

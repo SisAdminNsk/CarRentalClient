@@ -25,8 +25,6 @@ private:
     LoginResponse loginResponse;
 
     void Setup();
-    void OnGettingClosedOrdersRequestStarted();
-    void OnGettingClosedOrdersRequestFinished();
     void OnUpdateButtonClicked();
 
 private slots:

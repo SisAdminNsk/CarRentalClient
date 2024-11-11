@@ -23,8 +23,6 @@ public:
     void Update();
 private:
     void Setup();
-    void OnGetOpenOrdersRequestStarted();
-    void OnGetOpenOrdersRequestFinished();
     void OnUpdateButtonClicked();
 
     Ui::ActiveOrdersViewModel *ui;

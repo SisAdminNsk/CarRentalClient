@@ -7,6 +7,8 @@
         <file>Media/passwordIcon.png</file>
         <file>Media/usernameIcon.png</file>
         <file>Media/verificationIcon.png</file>
+        <file>Media/left_arrow_icon.png</file>
+        <file>Media/right_arrow_icon.png</file>
     </qresource>
     <qresource prefix="/Configuration"/>
     <qresource prefix="/configuration">

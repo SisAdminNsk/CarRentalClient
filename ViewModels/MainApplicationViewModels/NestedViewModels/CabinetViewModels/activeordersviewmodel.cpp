@@ -27,13 +27,6 @@ void ActiveOrdersViewModel::Setup(){
     ui->progressBar->reset();
     ui->progressBar->hide();
 
-    //QTimer *timer = new QTimer();
-    //connect(timer, &QTimer::timeout, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
-    // один раз шлет запрос
-    // после этого запонмиает значение через которые начнется заказ и шлет еще один запрос который обновляет состояние
-    //timer->start(60000);
-
-    connect(ui->updateButton, &QPushButton::clicked, this, &ActiveOrdersViewModel::OnUpdateButtonClicked);
 }
 
 void ActiveOrdersViewModel::InitializeCatalog(const QList<OpenedCarReservationResonse>& openedCarReservations){
@@ -101,24 +94,13 @@ void ActiveOrdersViewModel::OnUpdateButtonClicked(){
             &ActiveOrdersViewModel::OnGettingOpenCarOrdersFailure);
 
     getOpenedCarOrdersRequest->SendApiRequest();
-    OnGetOpenOrdersRequestStarted();
-}
-
-void ActiveOrdersViewModel::OnGetOpenOrdersRequestStarted(){
-    ui->updateButton->setEnabled(false);
-}
-
-void ActiveOrdersViewModel::OnGetOpenOrdersRequestFinished(){
-    ui->updateButton->setEnabled(true);
 }
 
 void ActiveOrdersViewModel::OnGettingOpenCarOrdersSuccess(const QList<OpenedCarReservationResonse>& openedReservations){
-    OnGetOpenOrdersRequestFinished();
     InitializeCatalog(openedReservations);
 }
 
 void ActiveOrdersViewModel::OnGettingOpenCarOrdersFailure(const QString& errorMessage){
-    OnGetOpenOrdersRequestFinished();
     QMessageBox::information(this, "Ошибка получения списка активных заказов", errorMessage);
 }
 

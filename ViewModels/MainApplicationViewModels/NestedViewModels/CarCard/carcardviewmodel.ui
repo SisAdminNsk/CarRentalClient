@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background-color: rgb(246, 255, 212);
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,0,0,0,0">
    <item>
     <widget class="QLabel" name="carImage">
@@ -26,6 +31,15 @@
    </item>
    <item>
     <widget class="QLabel" name="carBrandName">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+     </property>
      <property name="text">
       <string>CarBrand</string>
      </property>
@@ -36,6 +50,15 @@
    </item>
    <item>
     <widget class="QLabel" name="carModelName">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+     </property>
      <property name="text">
       <string>CarModel</string>
      </property>
@@ -48,6 +71,15 @@
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="0">
       <widget class="QLabel" name="label_8">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>Класс авто</string>
        </property>
@@ -55,6 +87,15 @@
      </item>
      <item row="0" column="1">
       <widget class="QLabel" name="carClass">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -65,6 +106,15 @@
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_10">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>Разгон до 100 км/ч</string>
        </property>
@@ -72,6 +122,15 @@
      </item>
      <item row="1" column="1">
       <widget class="QLabel" name="carAcseleration">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -82,6 +141,15 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_12">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>Мощность, лс</string>
        </property>
@@ -89,6 +157,15 @@
      </item>
      <item row="2" column="1">
       <widget class="QLabel" name="carPower">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -99,6 +176,15 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_14">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>Стоимость, руб/сутки</string>
        </property>
@@ -106,6 +192,15 @@
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="rentalPrice">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 50px;
+}QLabel{
+	font-size: 10pt;
+	font-weight: 600;
+}</string>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -117,39 +212,34 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,3,1">
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="3">
      <item>
       <widget class="QPushButton" name="createOrder">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: 12px;
+}
+
+QPushButton:hover{
+	background-color: #45a049;
+}
+
+QPushButton:pressed{
+	background-color: #3e8e41;
+}</string>
+       </property>
        <property name="text">
         <string>Сделать заявку</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>

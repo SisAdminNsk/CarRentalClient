@@ -14,13 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -31,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>809</width>
-        <height>497</height>
+        <width>813</width>
+        <height>504</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -47,7 +40,7 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,3,2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="7,3,2,3,7">
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
@@ -62,9 +55,52 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="updateButton">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background: transparent; border: none; } 
+                           QPushButton::hover { background: #e0e0e0; } 
+                           QPushButton::pressed { background: #d0d0d0; } 
+                           QPushButton { image: url(:/media/Media/left_arrow_icon.png); }
+
+QPushButton{
+	height: 30%;
+}</string>
+       </property>
        <property name="text">
-        <string>Обновить</string>
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-size: 14pt;
+	font-weight: 600;
+	background-color: rgb(246, 255, 212);
+}
+
+QLineEdit {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 10px;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton { background: transparent; border: none; } 
+                           QPushButton::hover { background: #e0e0e0; } 
+                           QPushButton::pressed { background: #d0d0d0; } 
+                           QPushButton { image: url(:/media/Media/right_arrow_icon.png); }
+
+QPushButton{
+	height: 30%;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -82,6 +118,13 @@
       </spacer>
      </item>
     </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

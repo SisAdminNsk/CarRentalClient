@@ -56,7 +56,6 @@ void ClosedOrdersViewModel::InitializeCatalog(const QList<ClosedCarReservationRe
             }
         }
         else{
-            //closedCarOrdersViewModels.append(new ClosedCarOrderCardViewModel(closedReservation));
             ui->verticalLayout->addWidget(new ClosedCarOrderCardViewModel(closedReservation));
         }
     }
@@ -81,17 +80,6 @@ void ClosedOrdersViewModel::Setup(){
 
     ui->progressBar->reset();
     ui->progressBar->hide();
-
-    connect(ui->updateButton, &QPushButton::clicked, this, &ClosedOrdersViewModel::OnUpdateButtonClicked);
-}
-
-
-void ClosedOrdersViewModel::OnGettingClosedOrdersRequestStarted(){
-    ui->updateButton->setEnabled(false);
-}
-
-void ClosedOrdersViewModel::OnGettingClosedOrdersRequestFinished(){
-     ui->updateButton->setEnabled(true);
 }
 
 void ClosedOrdersViewModel::OnUpdateButtonClicked(){
@@ -106,19 +94,15 @@ void ClosedOrdersViewModel::OnUpdateButtonClicked(){
             &ClosedOrdersViewModel::OnGettingClosedCarOrdersFailure);
 
     getOpenedCarOrdersRequest->SendApiRequest();
-    OnGettingClosedOrdersRequestStarted();
 }
 
 void ClosedOrdersViewModel::OnGettingClosedCarOrdersSuccess(
     const QList<ClosedCarReservationResponse>& closedReservations)
 {
-    OnGettingClosedOrdersRequestFinished();
-
     InitializeCatalog(closedReservations);
 }
 
 void ClosedOrdersViewModel::OnGettingClosedCarOrdersFailure(const QString& errorMessage)
 {
-    OnGettingClosedOrdersRequestFinished();
     QMessageBox::information(this, "Ошибка получения списка завершенных заказов", errorMessage);
 }

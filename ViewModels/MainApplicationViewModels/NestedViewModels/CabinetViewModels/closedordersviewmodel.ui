@@ -39,6 +39,13 @@
      </widget>
     </widget>
    </item>
+   <item row="0" column="0">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="7,3,2,3,7">
      <item>
@@ -55,7 +62,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="goBack">
        <property name="styleSheet">
         <string notr="true">QPushButton { background: transparent; border: none; } 
                            QPushButton::hover { background: #e0e0e0; } 
@@ -72,7 +79,7 @@ QPushButton{
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="pageNumberEdit">
        <property name="styleSheet">
         <string notr="true">QLineEdit{
 	font-size: 14pt;
@@ -88,7 +95,7 @@ QLineEdit {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="goNext">
        <property name="styleSheet">
         <string notr="true">QPushButton { background: transparent; border: none; } 
                            QPushButton::hover { background: #e0e0e0; } 
@@ -118,13 +125,6 @@ QPushButton{
       </spacer>
      </item>
     </layout>
-   </item>
-   <item row="0" column="0">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

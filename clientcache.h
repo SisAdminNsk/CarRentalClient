@@ -4,6 +4,7 @@
 #include <QString>
 #include <QMutexLocker>
 #include <QMap>
+#include <QPixmap>
 
 #include "Api/Dto/loginresponse.h"
 #include "Api/Dto/carsharinguserdto.h"
@@ -34,6 +35,28 @@ public:
         data["userId"] = loginCredentials.UserId;
     }
 
+    void SaveCarImagePixmap(const QString carOrderId, const QPixmap& carImagePixmap){
+        QMutexLocker locker(&mutex);
+        carOrderToPixmap[carOrderId] = carImagePixmap;
+    }
+
+    void ClearCarImageCache(const QList<QString> busyForRenderCarOrdersId){
+
+        for(auto& carOrderId : carOrderToPixmap.keys()){
+            if(!busyForRenderCarOrdersId.contains(carOrderId)){
+                carOrderToPixmap.remove(carOrderId);
+            }
+        }
+    }
+
+    QPixmap GetCarImagePixmap(const QString& carOrderId){
+        QMutexLocker locker(&mutex);
+
+
+
+        return carOrderToPixmap[carOrderId];
+    }
+
     LoginResponse GetUserLoginCredentials(){
         if(!data.contains("bearer") || (!data.contains("userId"))){
             throw std::runtime_error("This data should not be here yet");
@@ -59,6 +82,8 @@ private:
     ClientCache() {}
 
     QMap<QString, QString> data;
+    QMap<QString, QPixmap> carOrderToPixmap;
+
     CarsharingUserDto userData;
     QMutex mutex;
 };

@@ -2,7 +2,8 @@
 #define GETCLOSEDCARRESERVATIONSREQUEST_H
 
 #include "Api/Endpoints/baseapirequest.h"
-#include "Api/Dto/closedcarreservationresponse.h"
+#include "Api/Dto/getclosedcarreservations.h"
+#include "Api/Dto/paginatedclosedcarreservationsresponse.h"
 
 class GetClosedCarReservationsRequest : public BaseApiRequest
 {
@@ -11,7 +12,7 @@ public:
     explicit GetClosedCarReservationsRequest
     (
         const QString& authorizationToken,
-        const QString& carsharingUserId,
+        const GetClosedCarReservations& getClosedCarReservations,
         QObject *parent = nullptr
     );
 
@@ -19,12 +20,12 @@ public:
     virtual void SetupRequest() override;
 
 signals:
-    void OnSuccessSingal(const QList<ClosedCarReservationResponse>& openedReservations);
+    void OnSuccessSingal(const PaginatedClosedCarReservationsResponse& closedCarReservations);
     void OnFailureSignal(const QString &errorMessage);
 
 private:
-    QString carsharingUserId;
     QString authorizationToken;
+    GetClosedCarReservations getClosedCarReservations;
 };
 
 #endif // GETCLOSEDCARRESERVATIONSREQUEST_H

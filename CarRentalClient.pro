@@ -34,9 +34,11 @@ SOURCES += \
         Api/Dto/createorupdatecarsharinguserrequestbody.cpp \
         Api/Dto/getcarsdto.cpp \
         Api/Dto/getcarsresponse.cpp \
+        Api/Dto/getclosedcarreservations.cpp \
         Api/Dto/logindto.cpp \
         Api/Dto/loginresponse.cpp \
         Api/Dto/openedcarreservationresonse.cpp \
+        Api/Dto/paginatedclosedcarreservationsresponse.cpp \
         Api/Dto/registratedto.cpp \
         Api/Endpoints/CarOrders/Replies/createcarorderreplyhandler.cpp \
         Api/Endpoints/CarOrders/Replies/getclosedcarreservationsreplyhandler.cpp \
@@ -93,9 +95,11 @@ HEADERS += \
         Api/Dto/createorupdatecarsharinguserrequestbody.h \
         Api/Dto/getcarsdto.h \
         Api/Dto/getcarsresponse.h \
+        Api/Dto/getclosedcarreservations.h \
         Api/Dto/logindto.h \
         Api/Dto/loginresponse.h \
         Api/Dto/openedcarreservationresonse.h \
+        Api/Dto/paginatedclosedcarreservationsresponse.h \
         Api/Dto/registratedto.h \
         Api/Endpoints/CarOrders/Replies/createcarorderreplyhandler.h \
         Api/Endpoints/CarOrders/Replies/getclosedcarreservationsreplyhandler.h \

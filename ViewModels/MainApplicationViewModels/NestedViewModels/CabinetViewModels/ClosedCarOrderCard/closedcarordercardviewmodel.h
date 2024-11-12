@@ -31,6 +31,8 @@ private:
     Ui::ClosedCarOrderCardViewModel *ui;
     ClosedCarReservationResponse closedCarReservation;
 
+    void SetImage(QPixmap imagePixmap);
+
     void Setup();
     void LoadCarImage(const QString& imageUrl);
 

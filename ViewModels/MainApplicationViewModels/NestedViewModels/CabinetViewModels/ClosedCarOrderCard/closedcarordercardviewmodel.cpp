@@ -2,6 +2,7 @@
 #include "ui_closedcarordercardviewmodel.h"
 
 #include "Helpers/fromurlimageloader.h"
+#include "clientcache.h"
 
 ClosedCarOrderCardViewModel::ClosedCarOrderCardViewModel(
     const ClosedCarReservationResponse& closedCarReservationsResponse,QWidget *parent)
@@ -29,7 +30,14 @@ bool ClosedCarOrderCardViewModel::compare(
 
 void ClosedCarOrderCardViewModel::Setup(){
 
-    LoadCarImage(closedCarReservation.CarImageURI);
+    auto carImageOrNull = ClientCache::instance().GetCarImagePixmap(closedCarReservation.Id);
+
+    if(carImageOrNull.isNull()){
+        LoadCarImage(closedCarReservation.CarImageURI);
+    }
+    else{
+        OnCarImageDonwloaded(carImageOrNull);
+    }
 
     ui->carId->setText(closedCarReservation.CarId);
     ui->carId->setReadOnly(true);
@@ -58,11 +66,19 @@ QString ClosedCarOrderCardViewModel::GetId(){
     return ui->carOrderId->text();
 }
 
-void ClosedCarOrderCardViewModel::OnCarImageDonwloaded(QPixmap imagePixmap){
+
+void ClosedCarOrderCardViewModel::SetImage(QPixmap imagePixmap){
 
     ui->carImage->setPixmap(imagePixmap.scaled(QSize(600,600),Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->carImage->setScaledContents(true);
     ui->carImage->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+}
+
+
+void ClosedCarOrderCardViewModel::OnCarImageDonwloaded(QPixmap imagePixmap){
+
+    SetImage(imagePixmap);
+    ClientCache::instance().SaveCarImagePixmap(closedCarReservation.Id, imagePixmap);
 }
 
 void ClosedCarOrderCardViewModel::UpdateFields(const ClosedCarReservationResponse& newData){

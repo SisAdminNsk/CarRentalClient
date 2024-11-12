@@ -32,13 +32,5 @@ void GetClosedCarReservationsReplyHandler::Handle(QNetworkReply* reply){
         return;
     }
 
-    auto value = jsonDoc.array();
-
-    QList<ClosedCarReservationResponse> closedCarReservations;
-
-    for(size_t i=0;i<value.size();i++){
-        closedCarReservations.push_back(ClosedCarReservationResponse(value[i].toObject()));
-    }
-
-    emit this->getClosedCarReservationRequest->OnSuccessSingal(closedCarReservations);
+    emit this->getClosedCarReservationRequest->OnSuccessSingal(PaginatedClosedCarReservationsResponse(jsonDoc.object()));
 }

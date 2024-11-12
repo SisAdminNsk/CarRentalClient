@@ -1,9 +1,12 @@
 #include "closedordersviewmodel.h"
 #include "ui_closedordersviewmodel.h"
+
+#include <QMessageBox>
+
 #include "clientcache.h"
 #include "Api/Endpoints/CarOrders/Requests/getclosedcarreservationsrequest.h"
-#include <QMessageBox>
-#include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/ClosedCarOrderCard/closedcarordercardviewmodel.h"
+#include "Api/Dto/getclosedcarreservations.h"
+
 
 ClosedOrdersViewModel::ClosedOrdersViewModel(const LoginResponse& loginResponse, QWidget *parent) :
     QWidget(parent),
@@ -24,56 +27,38 @@ ClosedOrdersViewModel::~ClosedOrdersViewModel()
     delete ui;
 }
 
-void ClosedOrdersViewModel::InitializeCatalog(const QList<ClosedCarReservationResponse>& closedCarReservations){
+void ClosedOrdersViewModel::UpdateCatalogViewModel(const PaginatedClosedCarReservationsResponse& response){
 
-    QList<ClosedCarOrderCardViewModel*> closedCarOrdersViewModels;
+    currentShownPageNum = response.Page;
+    totalItemsCount = response.TotalItems;
+    standardPageSize = response.PageSize;
+    totalPages = std::ceil(response.TotalItems / standardPageSize);
 
-    for (int i = 0; i < ui->verticalLayout->count(); ++i){
-        QWidget* widget = ui->verticalLayout->itemAt(i)->widget();
-        ClosedCarOrderCardViewModel* closedCarOrderCardViewModel = qobject_cast<ClosedCarOrderCardViewModel*>(widget);
+    ClearCatalog();
 
-        if(closedCarOrderCardViewModel != nullptr){
-            closedCarOrdersViewModels.append(closedCarOrderCardViewModel);
-        }
+    for(auto& carOrder : response.Items){
+        ui->verticalLayout->addWidget(new ClosedCarOrderCardViewModel(carOrder));
     }
+}
 
-    for(const auto& closedReservation : closedCarReservations){
+void ClosedOrdersViewModel::ClearCatalog(){
 
-        if(std::any_of(closedCarOrdersViewModels.begin(),
-                        closedCarOrdersViewModels.end(),
-                        [closedReservation](ClosedCarOrderCardViewModel* model)
-                        { return model->GetId() == closedReservation.Id; }))
-        {
+    while (ui->verticalLayout->count() > 0) {
 
-            auto it = std::find_if(closedCarOrdersViewModels.begin(),
-                    closedCarOrdersViewModels.end(),
-                    [closedReservation](ClosedCarOrderCardViewModel* model)
-                    { return model->GetId() == closedReservation.Id;});
+        QLayoutItem *item = ui->verticalLayout->takeAt(0);
 
-            if(it != closedCarOrdersViewModels.end()){
-                auto order = *it;
-                order->UpdateFields(closedReservation);
-            }
+        if (!item->isEmpty()) {
+            ui->verticalLayout->removeWidget(item->widget());
+            item->widget()->deleteLater();
         }
-        else{
-            ui->verticalLayout->addWidget(new ClosedCarOrderCardViewModel(closedReservation));
-        }
+
+        delete item;
     }
+}
 
-    for (auto it = closedCarOrdersViewModels.begin(); it != closedCarOrdersViewModels.end(); ) {
-        ClosedCarOrderCardViewModel* order = *it;
+void ClosedOrdersViewModel::InitializeCatalog(const PaginatedClosedCarReservationsResponse& response){
 
-        bool exists = std::any_of(closedCarReservations.begin(), closedCarReservations.end(),
-                                  [order](const ClosedCarReservationResponse& reservation) { return reservation.Id == order->GetId(); });
-
-        if (!exists) {
-            ui->verticalLayout->removeWidget(order);
-            delete order;
-            it = closedCarOrdersViewModels.erase(it);
-        } else {
-            ++it;
-        }
-    }
+    UpdateCatalogViewModel(response);
 }
 
 void ClosedOrdersViewModel::Setup(){
@@ -84,8 +69,22 @@ void ClosedOrdersViewModel::Setup(){
 
 void ClosedOrdersViewModel::OnUpdateButtonClicked(){
 
+    // показать прогресс бар
+
     auto carhsaringUserId = ClientCache::instance().GetCarsharingUserProfile().Id;
-    auto getOpenedCarOrdersRequest = new GetClosedCarReservationsRequest(loginResponse.Token,carhsaringUserId);
+
+    QString defaultOrderByFiled = "EndOfLease"; // все это прилетает с формочки
+    int defaulutSortDir = 1; // все это прилетает с формочки
+
+    GetClosedCarReservations getclosedCarReservations
+    (
+        CarOrdersFilter(),
+        SortParams(defaultOrderByFiled,defaulutSortDir),
+        PageParams(currentShownPageNum, standardPageSize),
+        carhsaringUserId
+    );
+
+    auto getOpenedCarOrdersRequest = new GetClosedCarReservationsRequest(loginResponse.Token,getclosedCarReservations);
 
     connect(getOpenedCarOrdersRequest, &GetClosedCarReservationsRequest::OnSuccessSingal,this,
             &ClosedOrdersViewModel::OnGettingClosedCarOrdersSuccess);
@@ -96,13 +95,33 @@ void ClosedOrdersViewModel::OnUpdateButtonClicked(){
     getOpenedCarOrdersRequest->SendApiRequest();
 }
 
-void ClosedOrdersViewModel::OnGettingClosedCarOrdersSuccess(
-    const QList<ClosedCarReservationResponse>& closedReservations)
+void ClosedOrdersViewModel::OnGettingClosedCarOrdersSuccess(const PaginatedClosedCarReservationsResponse& response)
 {
-    InitializeCatalog(closedReservations);
+    InitializeCatalog(response);
 }
 
 void ClosedOrdersViewModel::OnGettingClosedCarOrdersFailure(const QString& errorMessage)
 {
     QMessageBox::information(this, "Ошибка получения списка завершенных заказов", errorMessage);
 }
+
+void ClosedOrdersViewModel::on_goBack_clicked()
+{
+    if(currentShownPageNum > 1){
+        currentShownPageNum--;
+        OnUpdateButtonClicked();
+    }
+}
+
+void ClosedOrdersViewModel::on_goNext_clicked()
+{
+    if(currentShownPageNum < totalPages){
+        currentShownPageNum++;
+        OnUpdateButtonClicked();
+    }
+}
+
+
+
+
+

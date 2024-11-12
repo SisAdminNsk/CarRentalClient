@@ -3,14 +3,16 @@
 
 #include <QUrlQuery>
 
-GetClosedCarReservationsRequest::GetClosedCarReservationsRequest(
+GetClosedCarReservationsRequest::GetClosedCarReservationsRequest
+(
     const QString& authorizationToken,
-    const QString& carsharingUserId,
-    QObject *parent)
+    const GetClosedCarReservations& getClosedCarReservations,
+    QObject *parent
+)
 
     : BaseApiRequest{parent},
     authorizationToken(authorizationToken),
-    carsharingUserId(carsharingUserId)
+    getClosedCarReservations(getClosedCarReservations)
 {
      this->Setup(new GetClosedCarReservationsReplyHandler(this,this));
 }
@@ -24,9 +26,8 @@ void GetClosedCarReservationsRequest::SetupRequest(){
     auto url = QUrl(this->baseServerUrl.append("/v1/CarBooking/GetClosedCarReservationsByCarsharingUserId"));
 
     QUrlQuery query;
-    query.addQueryItem("carsharingUserId", carsharingUserId);
 
-    url.setQuery(query);
+    url.setQuery(getClosedCarReservations.ToUrlQuery());
 
     request = QNetworkRequest(url);
 

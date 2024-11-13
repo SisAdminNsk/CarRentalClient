@@ -52,8 +52,6 @@ public:
     QPixmap GetCarImagePixmap(const QString& carOrderId){
         QMutexLocker locker(&mutex);
 
-
-
         return carOrderToPixmap[carOrderId];
     }
 

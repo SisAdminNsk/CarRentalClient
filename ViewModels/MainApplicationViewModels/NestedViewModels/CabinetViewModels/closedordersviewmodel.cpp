@@ -2,9 +2,13 @@
 #include "ui_closedordersviewmodel.h"
 
 #include <QMessageBox>
+#include <QButtonGroup>
+#include <QIntValidator>
+#include <QTextLayout>
 
 #include "clientcache.h"
 #include "Api/Endpoints/CarOrders/Requests/getclosedcarreservationsrequest.h"
+#include "ViewModels/MainApplicationViewModels/NestedViewModels/CabinetViewModels/ClosedCarOrderCard/closedcarordercardviewmodel.h"
 #include "Api/Dto/getclosedcarreservations.h"
 
 
@@ -19,7 +23,7 @@ ClosedOrdersViewModel::ClosedOrdersViewModel(const LoginResponse& loginResponse,
 }
 
 void ClosedOrdersViewModel::Update(){
-    OnUpdateButtonClicked();
+    OnUpdateButtonClicked(ParseParamsFromView());
 }
 
 ClosedOrdersViewModel::~ClosedOrdersViewModel()
@@ -27,12 +31,46 @@ ClosedOrdersViewModel::~ClosedOrdersViewModel()
     delete ui;
 }
 
+void ClosedOrdersViewModel::CatalogUpdatingStarted(){
+
+    ui->goBack->setEnabled(false);
+    ui->goNext->setEnabled(false);
+    ui->pageNumberEdit->setEnabled(false);
+    ui->endOfLeaseSort->setEnabled(false);
+    ui->startOfLeaseSort->setEnabled(false);
+    ui->comboBox->setEnabled(false);
+}
+
+void ClosedOrdersViewModel::CatalogUpdatingFinished(){
+
+    ui->goBack->setEnabled(true);
+    ui->goNext->setEnabled(true);
+    ui->pageNumberEdit->setEnabled(true);
+    ui->startOfLeaseSort->setEnabled(true);
+    ui->endOfLeaseSort->setEnabled(true);
+    ui->comboBox->setEnabled(true);
+
+    QIntValidator* validator = new QIntValidator(1, this->totalPages, ui->comboBox);
+
+    ui->pageNumberEdit->setValidator(validator);
+    ui->pageNumberEdit->setText(QString::number(currentShownPageNum) + "/" + QString::number(totalPages));
+
+    ui->comboBox->clear();
+
+    for(size_t i=0; i < totalPages; i++){
+        ui->comboBox->addItem("Страница " + QString::number(i + 1));
+    }
+
+    ui->comboBox->setCurrentIndex(this->currentShownPageNum - 1);
+}
+
+
 void ClosedOrdersViewModel::UpdateCatalogViewModel(const PaginatedClosedCarReservationsResponse& response){
 
     currentShownPageNum = response.Page;
     totalItemsCount = response.TotalItems;
     standardPageSize = response.PageSize;
-    totalPages = std::ceil(response.TotalItems / standardPageSize);
+    totalPages = std::ceil(static_cast<double>(response.TotalItems) / static_cast<double>(standardPageSize));
 
     ClearCatalog();
 
@@ -59,28 +97,70 @@ void ClosedOrdersViewModel::ClearCatalog(){
 void ClosedOrdersViewModel::InitializeCatalog(const PaginatedClosedCarReservationsResponse& response){
 
     UpdateCatalogViewModel(response);
+    CatalogUpdatingFinished();
 }
 
 void ClosedOrdersViewModel::Setup(){
+
+    filterButtonsGroup = new QButtonGroup();
+    filterButtonsGroup->addButton(ui->startOfLeaseSort);
+    filterButtonsGroup->addButton(ui->endOfLeaseSort);
+
+    sortButtonsGroup = new QButtonGroup();
+    sortButtonsGroup->addButton(ui->ascending);
+    sortButtonsGroup->addButton(ui->decending);
+
+    ui->pageNumberEdit->setReadOnly(true);
+    ui->decending->setChecked(true);
+    ui->endOfLeaseSort->setChecked(true);
 
     ui->progressBar->reset();
     ui->progressBar->hide();
 }
 
-void ClosedOrdersViewModel::OnUpdateButtonClicked(){
+GetClosedCarReservationsParams ClosedOrdersViewModel::ParseParamsFromView(){
 
-    // показать прогресс бар
+    return GetClosedCarReservationsParams
+    (
+        CarOrdersFilter(),
+        SortParams(ParseSortFiledFromView(), ParseSortDirectionFromView()),
+        PageParams(this->currentShownPageNum, standardPageSize)
+    );
+}
+
+QString ClosedOrdersViewModel::ParseSortFiledFromView(){
+
+    if(ui->endOfLeaseSort->isChecked()){
+        return "EndOfLease";
+    }
+
+    if(ui->startOfLeaseSort->isChecked()){
+        return "StartOfLease";
+    }
+
+    return QString();
+}
+
+int ClosedOrdersViewModel::ParseSortDirectionFromView(){
+
+    if(ui->decending->isChecked()){
+        return 1;
+    }
+
+    if(ui->ascending->isChecked()){
+        return 0;
+    }
+}
+
+void ClosedOrdersViewModel::OnUpdateButtonClicked(const GetClosedCarReservationsParams& params){
 
     auto carhsaringUserId = ClientCache::instance().GetCarsharingUserProfile().Id;
 
-    QString defaultOrderByFiled = "EndOfLease"; // все это прилетает с формочки
-    int defaulutSortDir = 1; // все это прилетает с формочки
-
     GetClosedCarReservations getclosedCarReservations
     (
-        CarOrdersFilter(),
-        SortParams(defaultOrderByFiled,defaulutSortDir),
-        PageParams(currentShownPageNum, standardPageSize),
+        params.filter,
+        params.sortParams,
+        params.pageParams,
         carhsaringUserId
     );
 
@@ -93,6 +173,7 @@ void ClosedOrdersViewModel::OnUpdateButtonClicked(){
             &ClosedOrdersViewModel::OnGettingClosedCarOrdersFailure);
 
     getOpenedCarOrdersRequest->SendApiRequest();
+    CatalogUpdatingStarted();
 }
 
 void ClosedOrdersViewModel::OnGettingClosedCarOrdersSuccess(const PaginatedClosedCarReservationsResponse& response)
@@ -109,7 +190,7 @@ void ClosedOrdersViewModel::on_goBack_clicked()
 {
     if(currentShownPageNum > 1){
         currentShownPageNum--;
-        OnUpdateButtonClicked();
+        OnUpdateButtonClicked(ParseParamsFromView());
     }
 }
 
@@ -117,11 +198,36 @@ void ClosedOrdersViewModel::on_goNext_clicked()
 {
     if(currentShownPageNum < totalPages){
         currentShownPageNum++;
-        OnUpdateButtonClicked();
+        OnUpdateButtonClicked(ParseParamsFromView());
     }
 }
 
+void ClosedOrdersViewModel::on_comboBox_activated(int index)
+{
+    currentShownPageNum = index + 1;
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
 
 
+void ClosedOrdersViewModel::on_startOfLeaseSort_clicked()
+{
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
 
+
+void ClosedOrdersViewModel::on_endOfLeaseSort_clicked()
+{
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
+
+
+void ClosedOrdersViewModel::on_decending_clicked()
+{
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
+
+void ClosedOrdersViewModel::on_ascending_clicked()
+{
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
 

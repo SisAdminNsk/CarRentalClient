@@ -36,7 +36,7 @@ void ClosedCarOrderCardViewModel::Setup(){
         LoadCarImage(closedCarReservation.CarImageURI);
     }
     else{
-        OnCarImageDonwloaded(carImageOrNull);
+        SetImage(carImageOrNull);
     }
 
     ui->carId->setText(closedCarReservation.CarId);

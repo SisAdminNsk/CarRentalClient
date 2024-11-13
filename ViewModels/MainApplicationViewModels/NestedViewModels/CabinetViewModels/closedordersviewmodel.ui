@@ -14,7 +14,14 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
+   <item row="0" column="0">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -25,7 +32,7 @@
         <x>0</x>
         <y>0</y>
         <width>813</width>
-        <height>504</height>
+        <height>432</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -39,15 +46,51 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Сортировать по:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="startOfLeaseSort">
+       <property name="text">
+        <string>Дате начала аренды</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="endOfLeaseSort">
+       <property name="text">
+        <string>Дате окончания аренды</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QRadioButton" name="decending">
+         <property name="text">
+          <string>По убыванию</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="ascending">
+         <property name="text">
+          <string>По возрастанию</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="7,3,2,3,7">
+   <item row="3" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="7,3,0,3,7">
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
@@ -79,20 +122,45 @@ QPushButton{
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="pageNumberEdit">
-       <property name="styleSheet">
-        <string notr="true">QLineEdit{
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLineEdit" name="pageNumberEdit">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit{
 	font-size: 14pt;
 	font-weight: 600;
-	background-color: rgb(246, 255, 212);
+	background-color: white;
 }
 
 QLineEdit {
 	border: 1.5px solid rgb(180,226,155);
 	border-radius: 10px;
 }</string>
-       </property>
-      </widget>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <property name="styleSheet">
+          <string notr="true">QComboBox{
+	font-size: 14pt;
+	font-weight: 600;
+	background-color: white
+}
+
+QComboBox {
+	border: 1.5px solid rgb(180,226,155);
+	border-radius: 10px;
+}
+
+QComboBox {  qproperty-alignment: AlignCenter;  }</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QPushButton" name="goNext">

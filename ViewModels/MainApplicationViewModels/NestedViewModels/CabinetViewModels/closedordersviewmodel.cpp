@@ -77,6 +77,7 @@ void ClosedOrdersViewModel::UpdateCatalogViewModel(const PaginatedClosedCarReser
     for(auto& carOrder : response.Items){
         ui->verticalLayout->addWidget(new ClosedCarOrderCardViewModel(carOrder));
     }
+
 }
 
 void ClosedOrdersViewModel::ClearCatalog(){
@@ -103,10 +104,13 @@ void ClosedOrdersViewModel::InitializeCatalog(const PaginatedClosedCarReservatio
 void ClosedOrdersViewModel::Setup(){
 
     filterButtonsGroup = new QButtonGroup();
+
     filterButtonsGroup->addButton(ui->startOfLeaseSort);
     filterButtonsGroup->addButton(ui->endOfLeaseSort);
+    filterButtonsGroup->addButton(ui->priceSort);
 
     sortButtonsGroup = new QButtonGroup();
+
     sortButtonsGroup->addButton(ui->ascending);
     sortButtonsGroup->addButton(ui->decending);
 
@@ -138,6 +142,10 @@ QString ClosedOrdersViewModel::ParseSortFiledFromView(){
         return "StartOfLease";
     }
 
+    if(ui->priceSort->isChecked()){
+        return "Price";
+    }
+
     return QString();
 }
 
@@ -150,6 +158,8 @@ int ClosedOrdersViewModel::ParseSortDirectionFromView(){
     if(ui->ascending->isChecked()){
         return 0;
     }
+
+    return 0;
 }
 
 void ClosedOrdersViewModel::OnUpdateButtonClicked(const GetClosedCarReservationsParams& params){
@@ -227,6 +237,12 @@ void ClosedOrdersViewModel::on_decending_clicked()
 }
 
 void ClosedOrdersViewModel::on_ascending_clicked()
+{
+    OnUpdateButtonClicked(ParseParamsFromView());
+}
+
+
+void ClosedOrdersViewModel::on_priceSort_clicked()
 {
     OnUpdateButtonClicked(ParseParamsFromView());
 }

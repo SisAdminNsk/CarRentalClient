@@ -78,6 +78,7 @@ private slots:
     void on_endOfLeaseSort_clicked();
     void on_decending_clicked();
     void on_ascending_clicked();
+    void on_priceSort_clicked();
 };
 
 #endif // CLOSEDORDERSVIEWMODEL_H

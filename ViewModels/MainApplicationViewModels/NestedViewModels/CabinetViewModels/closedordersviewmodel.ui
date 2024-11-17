@@ -51,21 +51,28 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Сортировать по:</string>
+        <string>Сортировать:</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QRadioButton" name="startOfLeaseSort">
        <property name="text">
-        <string>Дате начала аренды</string>
+        <string>По дате начала аренды</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QRadioButton" name="endOfLeaseSort">
        <property name="text">
-        <string>Дате окончания аренды</string>
+        <string>По дате окончания аренды</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="priceSort">
+       <property name="text">
+        <string>По цене</string>
        </property>
       </widget>
      </item>
